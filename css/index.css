@@ -32,10 +32,6 @@
     bottom: 20px;
     left: 5px;
 } 
-ul,li{
-	margin:0px;
-	padding: 0px;
-}
 .header{
 	position: fixed;
 	width: 100%;
