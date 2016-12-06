@@ -88,6 +88,9 @@ ul,li{
 .content.out{
 	animation:fadeOut 0.5s linear forwards;
 }
+.content{
+    color: #fff;
+}
 .content h1{
 	font-size: 2.8em;
 }

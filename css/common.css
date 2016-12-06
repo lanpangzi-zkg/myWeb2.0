@@ -2,7 +2,7 @@ body{
 	font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",
 	Arial,sans-serif;
 	font-size: 16px;
-	color: #D4D4D4;
+	/*color: #D4D4D4;*/
 	overflow: hidden;
 }
 html,body,.wrapper{
@@ -18,6 +18,12 @@ ul{
 }
 a{
 	text-decoration: none;
+}
+.img-responsive{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
 }
 .wrapper-bg{
 	background: url("../images/sky.jpg");
@@ -46,7 +52,7 @@ a{
 	width: 21px;
     display: block;
     height: 3px;
-    background-color: #E60653;
+    background-color: #2196F3;
     z-index: 10;
     transition: transform 0.3s ease;
     transform-origin: left bottom;
@@ -76,13 +82,12 @@ a{
 .mobile-i .name{
 	font-size: 1.2em;
     line-height: 2em;
-    color: #3C3232;
     text-align: center;
-    background-color: #DAD4D4;
-    font-weight: bold;
+    border-bottom: 1px solid #2095f3;
 }
 .mobile-aside .cur{
-	background-color: #eee;
+	background-color: #fff;
+    color: #FF5722;
 }
 .mobile-aside{
 	overflow: hidden;
@@ -91,7 +96,7 @@ a{
 	left: 0;
 	top:0;
 	height: 100%;
-	background-color: #D0CECE;
+	background-color: #f3f3f3;
 	transition: all 0.6s ease-out;
 }
 .mobile-aside>a{
@@ -100,7 +105,6 @@ a{
     font-size: 18px;
     width: 150px;
     text-align: center;
-    font-weight: bold;
     text-decoration: none;
     line-height: 40px;
     margin: 10px 0;
@@ -166,4 +170,27 @@ a{
 	100%{
         opacity:0;
 	}
+}
+/*屏幕太窄，隐藏左边菜单*/
+@media screen and (max-width:620px){
+    .aside{
+        display: none;
+    }
+    .drawer{
+        display: block;
+    }
+    .main .content-i{
+        width: 100%;
+        margin-left: 0;
+        margin: 0;
+        height: 100%;
+        border-radius: 0;
+        padding: 0.5em;
+    }
+    .main .content-i{
+        padding-top: 30px;
+    }
+    .item-list .item{
+        width: 100%!important;
+    }
 }
