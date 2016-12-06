@@ -1,0 +1,26 @@
+/*屏幕太窄，隐藏左边菜单*/
+@media screen and (max-width:620px){
+    .aside{
+        display: none;
+    }
+    .drawer{
+        display: block;
+    }
+    .main .content-i{
+    	width: 100%;
+        margin-left: 0;
+        margin: 0;
+        height: 100%;
+        border-radius: 0;
+        opacity: 0.8;
+    }
+    .content-i p{
+
+    }
+}
+@media screen and (min-width: 800px){
+
+}
+@media screen and (min-width:900px){
+
+}

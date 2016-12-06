@@ -1,0 +1,169 @@
+body{
+	font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",
+	Arial,sans-serif;
+	font-size: 16px;
+	color: #D4D4D4;
+	overflow: hidden;
+}
+html,body,.wrapper{
+	width: 100%;
+	height: 100%;
+}
+ul,li,p{
+	margin: 0px;
+	padding: 0px;
+}
+ul{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+.wrapper-bg{
+	background: url("../images/sky.jpg");
+	background-size: cover;
+	opacity:0;
+}
+.wrapper-bg-show{
+	animation:fadeIn 0.5s linear 0.2s both;
+}
+.bg-flur{
+	 -webkit-filter: blur(1px);  
+	 opacity: 0.85;
+	 filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false);
+}
+.drawer{
+	display: none;
+	position: fixed;
+    left: 0;
+    top: 0;
+    padding: 0.5em;
+    z-index: 9999;
+    cursor: pointer;
+    transition:left 0.6s ease-out;
+}
+.drawer i{
+	width: 21px;
+    display: block;
+    height: 3px;
+    background-color: #E60653;
+    z-index: 10;
+    transition: transform 0.3s ease;
+    transform-origin: left bottom;
+}
+.drawer i+i{
+	margin-top: 3px;
+}
+.mobile-i{
+
+}
+.mobile-i span{
+	display: block;
+	width: 150px;
+    margin: 0.5em auto;
+}
+.mobile-icon-box{
+	width: 150px;
+}
+.mobile-i .icon{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #BD6D6D;
+    background: url("../images/photo.jpg");
+    background-size: cover;
+}
+.mobile-i .name{
+	font-size: 1.2em;
+    line-height: 2em;
+    color: #3C3232;
+    text-align: center;
+    background-color: #DAD4D4;
+    font-weight: bold;
+}
+.mobile-aside .cur{
+	background-color: #eee;
+}
+.mobile-aside{
+	overflow: hidden;
+	position: fixed;
+	width: 0;
+	left: 0;
+	top:0;
+	height: 100%;
+	background-color: #D0CECE;
+	transition: all 0.6s ease-out;
+}
+.mobile-aside>a{
+	display: block;
+    color: #6D6D6D;
+    font-size: 18px;
+    width: 150px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 40px;
+    margin: 10px 0;
+}
+#main.showMenu .mobile-aside{
+	width: 150px;
+}
+#main.showMenu .drawer{
+	left: 150px;
+}
+#main.showMenu .drawer>i{
+    transform: translateY(-2px) rotate(45deg);
+}
+#main.showMenu .drawer>i+i{
+	transform: scale(0);
+}
+#main.showMenu .drawer>i+i+i{
+	transform-origin: left top;
+	transform: translateY(2px) rotate(-45deg);
+}
+#main.showMenu .content-i{
+	margin-left: 150px;
+}
+
+/***********animation*************/
+@keyframes jump{
+	0%{
+        transform:translateY(0px);
+	}
+	100%{
+        background-color: #DC2585;
+        transform:translateY(-60px);
+	}
+}
+@keyframes shadow_change{
+	0%{
+        transform:scale(1);
+	}
+	100%{
+        transform:scale(0.2);
+	}
+}
+@keyframes dropDown{
+	0%{
+        transform:translateY(-100%);
+	}
+	100%{
+        transform:translateY(0);
+	}
+}
+@keyframes fadeIn{
+	0%{
+        opacity:0;
+	}
+	100%{
+        opacity:1;
+	}
+}
+@keyframes fadeOut{
+	0%{
+        opacity:1;
+	}
+	100%{
+        opacity:0;
+	}
+}

@@ -1,0 +1,97 @@
+.loading-c{
+	width: 100%;
+	height: 100%;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ball{ 
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;    
+    background-color: #43A8EA; 
+    animation:jump 1s cubic-bezier(0.33, 0.7, 0.66, 0.96) alternate infinite;
+}
+.loading{
+	position: relative;
+}
+.shadow{
+	width: 40px;
+	height: 10px;
+	position: absolute;
+	left: 0px;
+	bottom: -5px;
+    background: radial-gradient(#ccc, #eee, #fff);
+    animation:shadow_change 1s cubic-bezier(0.33, 0.7, 0.66, 0.96) alternate infinite;
+}
+.loading span{
+	display: inline-block;
+}
+.text{
+    position: relative;
+    bottom: 20px;
+    left: 5px;
+} 
+ul,li{
+	margin:0px;
+	padding: 0px;
+}
+.header{
+	position: fixed;
+	width: 100%;
+	top:0px;
+	left: 0px;
+	animation:dropDown 1s ease;
+}
+.header.out{
+	transition:transform 0.5s ease;
+    transform:translateY(-100%);  
+}
+.menu{
+	text-align: right;
+	padding: 0.4em 0.4em 0;
+}
+.menu .menu-item{
+	float: right;
+    border: 1px solid #FFFFFF;
+}
+.menu:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.menu .menu-item+.menu-item{
+	border-right: none;
+}
+.menu .menu-item a{
+	color: #ffffff;
+    font-size: 1.2em;
+    width: 3.5em;
+    line-height: 1.8em;
+    display: inline-block;
+    text-align: center;
+    transition:all 0.3s ease-in;
+}
+.menu .menu-item a:hover{
+	background-color: #4D3F55;
+	color:#fff;
+}
+.content{
+    position: absolute;
+    left: 50%;
+    top:50%;
+    z-index: 9;
+    transform:translate(-50%,-50%);
+	opacity:0;
+    animation:fadeIn 1.2s linear 0.5s both;
+}
+.content.out{
+	animation:fadeOut 0.5s linear forwards;
+}
+.content h1{
+	font-size: 2.8em;
+}
+.content p{
+    font-size: 1.4em;
+}
+
