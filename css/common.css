@@ -19,16 +19,25 @@ ul{
 a{
 	text-decoration: none;
 }
-.img-responsive{
+.trans-bg{
+    position: relative;
+}
+.trans-bg:before{
+    content: "";
     display: block;
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    top:0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    opacity: 0.5;
+    z-index: -1;
 }
 .wrapper-bg{
 	background: url("../images/sky.jpg");
 	background-size: cover;
-	opacity:0;
+	/*opacity:0;*/
 }
 .wrapper-bg-show{
 	animation:fadeIn 0.5s linear 0.2s both;
@@ -171,6 +180,7 @@ a{
         opacity:0;
 	}
 }
+
 /*屏幕太窄，隐藏左边菜单*/
 @media screen and (max-width:620px){
     .aside{
