@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>技术</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="css/common.css">
+   <link rel="stylesheet" type="text/css" href="css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="css/page.css">
+   <style type="text/css">
+      .item-list{
+        overflow: hidden;
+      }
+      .item-list .item{
+        margin-left: 1em;
+        margin-right: 1em;
+        transition:all 0.3s ease-in;
+      }
+      .item-list .item+.item{
+        margin-top:1em;
+      }
+      .item-list .item:hover{
+        box-shadow: 0 0 30px #ffffff;
+      }
+      .item-list .trans-bg:hover:before{
+        opacity: 0.7;
+      }
+      .item-list .item a{
+        display: block;
+        padding: 0 1em;
+        color: #fff;
+      }
+      .item-list .item .title{
+
+      }
+      .item-list .item .content{
+        line-height: 1.2em;
+        margin: 0.7em 0;
+        color: #dadada;
+      }
+      .item-list .item .sub-info{
+        padding: 0.5em 0;
+        text-align: right;
+      }
+      .item-list .item span{
+        color: #dadada;
+        font-size: 14px;
+      }
+      .item-list .item .date{
+        margin-right: 1em;
+      }
+      .item-list .item .tag{
+        
+      }
+   </style>
+ </head>
+ <body>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="index.html">首页</a>
+         <a href="about.html">关于</a>
+         <a href="works.html">作品</a>
+         <a href="javascript:void(0)" class="cur">技术</a>
+         <a href="contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="about.html">关于</a></li>
+            <li><a href="works.html">作品</a></li>
+            <li class="cur"><a href="javascript:void(0)">技术</a>
+            <li><a href="contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+       <ul class="item-list">
+          <li class="item trans-bg">
+            <a href="./views/it-01.html">
+              <h3 class="title">python基础学习--基本类型</h3>
+              <div class="content">本次学习笔记包含了python的基本数据类型介绍</div>
+              <div class="sub-info">
+                <span class="date">发布时间:2016-12-9</span>
+                <span class="tag">标签:python</span>
+              </div>
+            </a>
+          </li>
+          <li class="item trans-bg">
+            <a href="./views/it-02.html">
+              <h3 class="title">python基础学习--类型判断及转换</h3>
+              <div class="content">重点学习type和isinstance函数的使用以及不同类型之间的转换</div>
+              <div class="sub-info">
+                <span class="date">发布时间:2016-12-9</span>
+                <span class="tag">标签:python</span>
+              </div>
+            </a>
+          </li>
+          <li class="item trans-bg">
+            <a href="./views/it-01.html">
+              <h3 class="title">python基础学习--文件操作</h3>
+              <div class="content"></div>
+              <div class="sub-info">
+                <span class="date">发布时间:2016-8-8</span>
+                <span class="tag">标签:python</span>
+              </div>
+            </a>
+          </li>
+       </ul>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="js/jquery.smoothState.js"></script>
+      <script type="text/javascript" src="js/common.js"></script>
+      <script type="text/javascript" src="js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>

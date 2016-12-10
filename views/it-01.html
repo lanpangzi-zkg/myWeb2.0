@@ -1,0 +1,432 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>技术</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="../css/common.css">
+   <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="../css/page.css">
+   <style type="text/css">
+    .it-acticle{
+      color: #fff;
+      overflow: hidden;
+    }
+    .it-acticle h3{
+      text-align: center;
+      margin: 1em 0;
+      font-size: 1.8em;
+    }
+    .it-acticle .info{
+      margin: 1em 0;
+      font-size: 14px;
+      text-align: center;
+    }
+    .it-acticle .content{
+      line-height: 1.8em;
+      text-indent: 2em;
+      margin-bottom: 1em;
+      padding: 0 1em;
+    }
+    .chapter-title{
+      font-weight: bold;
+    }
+    .chapter-item,.chapter-title,.note{
+      margin: 1em 0;
+      text-indent: 0;
+    }
+    pre{
+      position: relative;
+      font-family: inherit;
+      background-color: #bfbfbf;
+      margin: 0;
+    }
+    pre:before{
+      content: "";
+      display: block;
+      position: absolute;
+      width: 4px;
+      height: 100%;
+      background-color: #E91E63;
+    }
+   </style>
+ </head>
+ <body>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="../index.html">首页</a>
+         <a href="../about.html">关于</a>
+         <a href="../works.html">作品</a>
+         <a href="../it.html" class="cur">技术</a>
+         <a href="../contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="../index.html">首页</a></li>
+            <li><a href="../about.html">关于</a></li>
+            <li><a href="../works.html">作品</a></li>
+            <li class="cur"><a href="../it.html">技术</a>
+            <li><a href="../contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+        <div class="it-acticle trans-bg">
+          <h3>python基础学习--基本类型</h3>
+          <div class="info">
+            <span class="date">发布时间：2016-12-9</span>
+            <span class="tag">标签:python</span>
+          </div>
+          <div class="content">
+            <p>最近在学习pyhton这门编程语言，学习一门语言，自然就是从最基础的知识点开始了，本次记录了python的基本数据类型，包含数值、字符串、列表等，与其他诸如java,javascript等编程语言而言，这些数据类型除了写法和方法使用有不同外，有很多相通之处，后面会将python与javascript语言做一个对比。<p>
+            <p>
+            python诞生于上世纪90年代初，其作者Buido van Rossum为了打发圣诞节的无趣开发了这门语言，牛人的世界我们不懂，只能默默感叹，这让我想到了javascript的作者Brendan Eich只用了一周多的时间就开发出来了，真不知道他们咋想的，玩似的就改变了hello world的世界，牛人的境界这辈子恐怕赶不上了，那就好好学习吧。python这门语言在TIOBE编程排行榜上长期排名前五，其欢迎程度在全世界可见一斑，其信仰的编程哲学就是简单。言归正传，下面介绍一下python的基本知识。
+            </p>
+            <p class="chapter-title">1.int</p>
+            <p class="chapter-item">
+              说明：整数类型
+            </p>
+            <p class="chapter-item">
+              声明：
+            </p>
+            <pre>a=1</pre>
+            <pre>b,c=2,3</pre>
+            <pre>print(a) # 1</pre>
+            <pre>print(b) # 2</pre>
+            <pre>print(c) # 3</pre>
+            <p class="chapter-item">
+              计算：
+            </p>
+            <pre>a,b=2,3</pre>
+            <pre>print(a+b) # 5</pre>
+            <pre>print(a-b) # -1</pre>
+            <pre>print(a*b) # 6</pre>
+            <pre>print(a**b) # 8</pre>
+            <pre>print(b/a) # 1.5</pre>
+            <pre>print(b%a) # 1</pre>
+            <pre>print(b//a) # 1</pre>
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              1.n**m表示n的m次方</br>
+              1.n//m表示除数取整</br>
+            </p>
+            <p class="chapter-item">
+              数值交换：
+            </p>
+            <pre>a=1</pre>
+            <pre>b=2</pre>
+            <pre>a,b=b,a</pre>
+            <pre>print(a) # 2</pre>
+            <pre>print(b) # 1</pre>
+
+            <p class="chapter-title">2.float</p>
+            <p class="chapter-item">
+              说明：浮点类型
+            </p>
+
+            <p class="chapter-item">
+              声明：
+            </p>
+            <pre>a=1.0</pre>
+            <pre>b,c=2.0,3.0</pre>
+            <pre>print(a) # 1.0</pre>
+            <pre>print(b) # 2.0</pre>
+            <pre>print(c) # 3.0</pre>
+
+            <p class="chapter-item">
+              计算：
+            </p>
+            <pre>a,b=2.0,3.0</pre>
+            <pre>print(a+b) # 5.0</pre>
+            <pre>print(a-b) # -1.0</pre>
+            <pre>print(a*b) # 6.0</pre>
+            <pre>print(a**b) # 8.0</pre>
+            <pre>print(b/a) # 1.5</pre>
+            <pre>print(b%a) # 1.0</pre>
+            <pre>print(b//a) # 1.0</pre>
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              1.与js一样，不能精确表示和计算浮点类型，0.1+0.2永远不等于0.3</br>
+            </p>
+
+            <p class="chapter-title">3.Decimal</p>
+            <p class="chapter-item">
+              说明：十进制数学计算
+            </p>
+            <p class="chapter-item">
+              声明：
+            </p>
+            <pre>from decimal import Decimal</pre>
+            <pre>a,b=Decimal(2),Decimal(3)</pre>
+            <pre>print(a) # Decimal('2')</pre>
+            <pre>print(b) # Decimal('3')</pre>
+            <pre>print(a/b) # Decimal('0.666666666666666666666667')</pre>
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              1.存储为十进制序列，可以设置计算进度，默认为28位，如果常规计算不能满足精度要求，可以采用decimal</br>
+            </p>
+            
+            <p class="chapter-title">4.Fraction</p>
+            <p class="chapter-item">
+              说明：分数
+            </p>
+            <p class="chapter-item">
+              声明：
+            </p>
+            <pre>from fractions import Fraction</pre>
+            <pre>Fraction(1,2) # 1/2</pre>
+            <pre>Fraction(1,2)+Fraction(2,3) # 1/2+2/3=7/6</pre>
+            <pre>Fraction(1,2)-Fraction(2,3) # 1/2-2/3=-1/6</pre>
+            <pre>Fraction(1,2)*Fraction(2,3) # 1/2*2/3=1/3</pre>
+            <pre>Fraction(1,2)/Fraction(2,3) # 1/2/(2/3)=3/4</pre>
+            <pre>Fraction(4,6)=>Fraction(2,3) # 自动约分</pre>
+            <pre>Fraction(1,2)+1 # Fraction(3/2)</pre>
+            <pre>Fraction(1,2)+1.0 # 1.5</pre>
+            <pre>f=Fraction(1,2)</pre>
+            <pre>f.numerator # 1</pre>
+            <pre>f.denominator # 2</pre>
+
+            <p class="chapter-title">5.string</p>
+            <p class="chapter-item">
+              说明：字符串
+            </p>
+            <p class="chapter-item">
+              声明：
+            </p>
+            <pre>s1='abc'</pre>
+            <pre>s2="abc"</pre>
+            <pre>s3='''abc</pre>
+            <pre>edf</pre>
+            <pre>'''</pre>
+
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              1.python没有字符类型</br>
+              2.单引号或者多引号声明字符串</br>
+              3.多行字符串使用'''</br>
+              4.字符串不可变</br>
+            </p>
+
+            <p class="chapter-item">
+              使用：
+            </p>
+
+            <pre>s1='abc'</pre>
+            <pre>#------索引------</pre>
+            <pre>s1[0] #'a'</pre>
+            <pre>s1[-1] #'c'</pre>
+            <pre>#------遍历------</pre>
+            <pre>for i in s1:</pre>
+            <pre>print(i) # a b c</pre>
+            <pre>#------切片------</pre>
+            <pre>s1[0:1] #'a'</pre>
+            <pre>s1[0:2] #'ab'</pre>
+            <pre>s1[:] #'abc'</pre>
+            <pre>s1[0:1]='123' #TypeError</pre>
+            <pre>#------拼接------</pre>
+            <pre>s1+'123' #'abc123'</pre>
+            <pre>s1*2 #'abcabc'</pre>
+            <pre>#------替换------</pre>
+            <pre>s.replace('a','1') #'1bc'</pre>
+            <pre>#------查找------</pre>
+            <pre>'a' in s # True </pre>
+            <pre>s.index('a') # 0 </pre>
+            <pre>s.index('d') # ValueError:substring not found</pre>
+            <pre>s.count('a') # 1 </pre>
+            <pre>s.count('d') # 0 </pre>
+            <pre>s.startswith('a') # True </pre>
+            <pre>s.endswith('c') # True </pre>
+            <pre>#------分割------</pre>
+            <pre>s.split('b') #['a','c'] </pre>
+
+            <p class="chapter-title">6.list</p>
+            <p class="chapter-item">
+              说明：列表
+            </p>
+            <p class="chapter-item">
+              声明：
+            </p>
+            <pre>l1=['a','b','c',1,2,3]</pre>
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              1.list可以存放不同类型的元素</br>
+              2.有序
+            </p>
+
+            <p class="chapter-item">
+              使用：
+            </p>
+            <pre>#------索引------</pre>
+            <pre>l1[0] # 'a'</pre>
+            <pre>#------遍历------</pre>
+            <pre>for i in l1:</pre>
+            <pre>print(i) # a b c 1 2 3</pre>
+            <pre>#------切片------</pre>
+            <pre>l1[0:3] # ['a','b','c']</pre>
+            <pre>#------添加元素------</pre>
+            <pre>l1.append(4) #['a','b','c',1,2,3,4] 队列末尾添加</pre>
+            <pre>l1.insert(1,'d') #['a','d','b','c',1,2,3,4] 指定位置添加</pre>
+            <pre>#------获取元素------</pre>
+            <pre>l1.pop() # 4 默认获取队尾元素，并删除在队列中的位置</pre>
+            <pre>l1.pop(2) # 'b'</pre>
+            <pre>#------替换------</pre>
+            <pre>l1=['a','b','c']</pre>
+            <pre>l1[0:1]=[1] # [1,'b','c']</pre>
+            <pre>#------删除------</pre>
+            <pre>del l1[0:2] #['c'] </pre>
+            <pre>del l1 #删除整个l1</pre>
+            <pre>l1.remove('a') #['b','c']</pre>
+            <pre>l1.remove('d') #ValueError 删除不存在的元素会报错</pre>
+            <pre>#------复制------</pre>
+            <pre>l2=l1[:] #['a','b','c']</pre>
+            <pre>l3=l1[0:] #['a','b','c']</pre>
+            <pre>l4=l1.copy() #['a','b','c'] 浅拷贝</pre>
+            <pre>#------合并-----</pre>
+            <pre>l1=['a','b','c']</pre>
+            <pre>l2=[1,2,3]</pre>
+            <pre>l1.extend(l2) #将l2的数据加入到l1里面</pre>
+            <pre>#------查找-----</pre>
+            <pre>l1=['a','b','c','a']</pre>
+            <pre>'a' in l1 # True</pre>
+            <pre>l1.index('a') # 1</pre>
+            <pre>l1.index('e') # ValueError 元素不存在的会报错</pre>
+            <pre>l1.count('a') # 2</pre>
+            <pre>l1.count('e') # 0</pre>
+
+            <p class="chapter-title">6.dict</p>
+            <p class="chapter-item">
+              说明：键值对集合
+            </p>
+            <p class="chapter-item">
+              声明：
+            </p>
+            <pre>d1={'name':'neo','age':30}</pre>
+
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              1.key不能重复</br>
+              3.key值不可变(内容和指向)，因此不能使用list作为key</br>
+              2.存储无序，查找快速</br>
+            </p>
+            <p class="chapter-item">
+              使用：
+            </p>
+            <pre>#------访问------</pre>
+            <pre>d1['name'] # 'neo'</pre>
+            <pre>d1['address'] # KeyError</pre>
+            <pre>d1.get('name') #'neo'</pre>
+            <pre>d1.get('name') # None</pre>
+            <pre>#------遍历------</pre>
+            <pre>for k in d1:</pre>
+            <pre>   print(k,kv[k])</pre>
+            <pre>for k,v in d1.items():</pre>
+            <pre>   print(k,v)</pre>
+            <pre>#------添加------</pre>
+            <pre>d1['address']='wuhan'</pre>
+            <pre>d1['age']=30 #覆盖已存在的值</pre>
+            <pre>#------删除------</pre>
+            <pre>del kv['a'] #key值不存在会报错</pre>
+            <pre>del kv #删除整个变量 kv不存在会报错</pre>
+            <pre>#------索引------</pre>
+            <pre>'name' in d1 # True</pre>
+            <pre>'school' in d1 # False</pre>
+
+            <p class="chapter-title">7.set</p>
+            <p class="chapter-item">
+              说明：key值集合
+            </p>
+            <p class="chapter-item">
+              声明：
+            </p>
+            <pre>s1=set(['a','b','c'])</pre>
+
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              1.key不能重复</br>
+              3.key值不可变(内容和指向)，因此不能使用list作为key</br>
+              2.存储无序</br>
+            </p>
+            <p class="chapter-item">
+              使用：
+            </p>
+            <pre>#------索引------</pre>
+            <pre>s1=set(['a','b','c'])</pre>
+            <pre>'a' in s1 # True 因为无序，所以不能通过位置访问</pre>  
+            <pre>#------遍历------</pre>
+            <pre>for key in s1</pre>
+            <pre>      print(key) # c a b</pre>  
+            <pre>#------添加------</pre>
+            <pre>s1.add('d') #如果元素存在，将不会添加成功</pre>
+            <pre>#------删除-----</pre>
+            <pre>s1.remove('a')</pre>
+            <pre>s1.remove('d') #KeyError 删除不存在的元素将会保存</pre>
+
+            <p class="chapter-title">8.tuple</p>
+            <p class="chapter-item">
+              说明：有序列表
+            </p>
+            <p class="chapter-item">
+              声明：
+            </p>
+            <pre>t1=('a','b','c')</pre>
+
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              1.不能更改元素，不能更改元素是指向不变，因此可以添加list元素</br>
+              2.没有增删改</br>
+            </p>
+            <p class="chapter-item">
+              使用：
+            </p>
+            <pre>#------访问------</pre>
+            <pre>t1[0] # 'a'</pre>
+            <pre>'a' in t1 # True</pre>
+            <pre>#------遍历------</pre>
+            <pre>for i in t1</pre>
+            <pre>      print(i) # a b c</pre>  
+          </div><!--end of content-->
+        </div>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="../js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="../js/jquery.smoothState.js"></script>
+      <script type="text/javascript" src="../js/common.js"></script>
+      <script type="text/javascript" src="../js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>
