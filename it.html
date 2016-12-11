@@ -52,6 +52,22 @@
       .item-list .item .tag{
         
       }
+      .tabs{
+        margin-bottom: 1em;
+        color: #fff;
+        margin-left: 1em;
+        margin-right: 1em;
+      }
+      .tabs:after{
+        content: "";
+        display: block;
+        clear: both;
+      }
+      .tabs .tab{
+        float: left;
+        line-height: 1.5em;
+        margin-right: 1em;
+      }
    </style>
  </head>
  <body>
@@ -91,7 +107,16 @@
          </div>
       </div>
       <div class="content-i">
-       <ul class="item-list">
+        <ul class="tabs trans-bg">
+          <li class="tab">python</li>
+          <li class="tab">js</li>
+          <li class="tab">网络安全</li>
+          <li class="tab">css</li>
+          <li class="tab">react</li>
+          <li class="tab">android</li>
+          <li class="tab">其他</li>
+        </ul>
+        <ul class="item-list">
           <li class="item trans-bg">
             <a href="./views/it-01.html">
               <h3 class="title">python基础学习--基本类型</h3>
@@ -105,7 +130,7 @@
           <li class="item trans-bg">
             <a href="./views/it-02.html">
               <h3 class="title">python基础学习--类型判断及转换</h3>
-              <div class="content">重点学习type和isinstance函数的使用以及不同类型之间的转换</div>
+              <div class="content">在学习了python的基本数据类型之后，不可避免将面对类型的判断与转换的问题，例如js提供了typeof和instanceof来判断类型......</div>
               <div class="sub-info">
                 <span class="date">发布时间:2016-12-9</span>
                 <span class="tag">标签:python</span>
@@ -113,8 +138,18 @@
             </a>
           </li>
           <li class="item trans-bg">
+            <a href="./views/it-03.html">
+              <h3 class="title">python基础学习--函数</h3>
+              <div class="content">函数，是可重用的代码块，通常可以分为内置函数和自定义函数两大类，如前面接触使用到的打印函数print就是内置函数......</div>
+              <div class="sub-info">
+                <span class="date">发布时间:2016-12-11</span>
+                <span class="tag">标签:python</span>
+              </div>
+            </a>
+          </li>
+          <li class="item trans-bg">
             <a href="./views/it-01.html">
-              <h3 class="title">python基础学习--文件操作</h3>
+              <h3 class="title">python基础学习--流程控制</h3>
               <div class="content"></div>
               <div class="sub-info">
                 <span class="date">发布时间:2016-8-8</span>

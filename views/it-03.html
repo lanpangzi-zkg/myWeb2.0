@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>技术-python函数</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="../css/common.css">
+   <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="../css/page.css">
+   <link rel="stylesheet" type="text/css" href="../css/article.css">
+ </head>
+ <body>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="../index.html">首页</a>
+         <a href="../about.html">关于</a>
+         <a href="../works.html">作品</a>
+         <a href="../it.html" class="cur">技术</a>
+         <a href="../contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="../index.html">首页</a></li>
+            <li><a href="../about.html">关于</a></li>
+            <li><a href="../works.html">作品</a></li>
+            <li class="cur"><a href="../it.html">技术</a>
+            <li><a href="../contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+        <div class="it-acticle trans-bg">
+          <h3>python基础学习--类型判断及转换</h3>
+          <div class="info">
+            <span class="date">发布时间：2016-12-9</span>
+            <span class="tag">标签:python</span>
+          </div>
+          <div class="content">
+            <p>函数，是可重用的代码块，通常可以分为内置函数和自定义函数两大类，如前面接触使用到的打印函数print就是内置函数，到目前为止我们都是使用的内置函数完成一些基本常见的操作，而对于个性化的业务逻辑，就需要自定义函数，今天主要对自定义函数做一个大概的介绍。<p>
+            <p>
+            <p class="chapter-title">1.定义</p>
+            <pre>def hello():</pre>
+            <pre>   print('this is hello')</pre>
+            <pre>hello() # this is hello </pre>
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              1.def关键字+函数名([param1,param2,....])</br>
+            </p>
+            
+            <p class="chapter-title">2.参数</p>
+            <p class="chapter-item">
+              使用：
+            </p>
+            <pre>def sayName1(name):</pre>
+            <pre>   print('my name is',name)</pre>
+            <pre>sayName1('neo') # my name is neo</pre>
+
+            <pre>#-----default param-----</pre>
+            <pre>def sayName2(name='neo'):</pre>
+            <pre>   print('my name is',name)</pre>
+            <pre>sayName2() # my name is neo</pre>
+            <pre>sayName2('jack') # my name is jack</pre> 
+
+            <pre>#-----*args param-----</pre>
+            <pre>def sayName3(*args):</pre>
+            <pre>   print(type(args)) # &lt;class 'tuple'&gt;</pre>
+            <pre>   print('my name is',args)</pre>
+            <pre>sayName('jack','rose') # my name is jack rose</pre>
+
+            <pre>#-----**kwargs param-----</pre>
+            <pre>def sayName4(**kwargs):</pre>
+            <pre>   print(type(kwargs)) # &lt;class 'dict'&gt;</pre>
+            <pre>   print(kwargs)</pre>
+            <pre>sayName(name='jack',age=20) # {'name':'jack','age':20}</pre>
+
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              1.函数参数可以指定默认值</br>
+              2.*args表示任意参数，参数在函数体内以tuple形式存在</br>
+              3.**args表示任意参数，参数在函数体内以dict形式存在</br>
+              4.当同时包含*args和**kwargs的时候，*args在前</br>
+            </p>
+            
+            <p class="chapter-title">3.作用域</p>
+            <p class="chapter-item">
+              说明：python引用变量顺序：当前作用域局部变量--外层作用域变量--当前模块的全局变量--python内置变量，与js类似。
+            </p>
+            <pre>a='outer'</pre>
+            <pre>def sayName1():</pre>
+            <pre>   print(a)</pre>
+            <pre>sayName1() # 'outer'</pre>
+
+            <pre>def sayName2():</pre>
+            <pre>   a='inner'</pre>
+            <pre>   print(a)</pre>
+            <pre>sayName2() # 'inner'</pre>
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              函数内声明的变量默认情况下只在函数体内可见，即作用域位于函数内，外部的变量对于函数来说是可见的，因此对于sayName1，可以访问外部的a变量</br>
+            </p>
+
+            <p class="chapter-title">4.global</p>
+            <p class="chapter-item">
+              说明：声明全局变量
+            </p>
+
+            <pre>def test1():</pre>
+            <pre>   global num</pre>
+            <pre>   num=10</pre>
+            <pre>test1()</pre>
+            <pre>print(num) # 10 </pre>
+
+            <pre>def test2():</pre>
+            <pre>   num=10</pre>
+            <pre>test2()</pre>
+            <pre>print(num) #NameError</pre>
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              global声明全局变量，因此可以在其他地方访问该变量，而对于没有使用global声明的变量，在外面是不可见的，也就是超出了变量的作用域</br>
+            </p>
+
+            <pre>num=10</pre>
+            <pre>def test3():</pre>
+            <pre>   num+=1</pre>
+            <pre>test3() # UnboundLocalError</pre>
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              1.在函数或者其他局部作用域中使用或者声明全局变量，如果不修改全局变量，只是简单的引用可以省略该关键字</br>
+              2.在函数体内如果修改了同名的全局变量num,解释器认为是局部变量，但是局部变量num没有赋值，直接参与运算，因此报错</br>
+            </p>
+            
+            <p class="chapter-title">5.nonlocal</p>
+            <p class="chapter-item">
+              说明：用来在函数或者其他作用域中使用外层(非全局)变量。
+            </p>
+            <pre>num=1 #全局变量</pre>
+            <pre>def test(): </pre>
+            <pre>     num=2 #局部变量</pre>
+            <pre>     def t1():</pre>
+            <pre>          nonlocal num #引用局部变量</pre>
+            <pre>          num=3</pre>
+            <pre>          print(num)</pre>
+            <pre>     def t2():</pre>
+            <pre>          print(num) #引用局部变量 </pre>
+            <pre>     t1()</pre>
+            <pre>     t2()</pre>    
+            <pre>     print(num) #引用局部变量</pre> 
+            <pre>test()</pre>
+            <pre>print(num) #引用全局变量</pre>
+            <pre>#-----result-----</pre>
+            <pre>3</pre>
+            <pre>3</pre>
+            <pre>3</pre>
+            <pre>1</pre>
+
+            <p class="chapter-title">6.return</p>
+            <p class="chapter-item">
+              说明：表示从一个函数中返回，默认返回None,也可以返回其他对象。
+            </p>
+            <pre>def test(a=1,b=2): </pre>
+            <pre>     return a+b</pre>
+            <pre>print(test()) # 3</pre>
+          </div><!--end of content-->
+        </div>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="../js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="../js/jquery.smoothState.js"></script>
+      <script type="text/javascript" src="../js/common.js"></script>
+      <script type="text/javascript" src="../js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>
