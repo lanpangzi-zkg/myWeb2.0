@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>http缓存</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="../../css/common.css">
+   <link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="../../css/page.css">
+   <link rel="stylesheet" type="text/css" href="../../css/article.css">
+ </head>
+ <body>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="../../index.html">首页</a>
+         <a href="../../about.html">关于</a>
+         <a href="../../works.html">作品</a>
+         <a href="../../it.html" class="cur">技术</a>
+         <a href="../../contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="../../about.html">关于</a></li>
+            <li><a href="../../works.html">作品</a></li>
+            <li class="cur"><a href="../../it.html">技术</a>
+            <li><a href="../../contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+        <div class="it-acticle trans-bg">
+          <h3>http缓存</h3>
+          <div class="info">
+            <span class="date">发布时间：2016-12-17</span>
+            <span class="tag">标签:html</span>
+          </div>
+          <div class="content">
+            <p>http缓存，是提高页面响应速度，优化网络访问请求的一重要手段，已经广泛应用于网站开发之中，而以前对其都是一知半解，前两天看到腾讯Bugly公众号的一篇http缓存机制的文章，对缓存有了更加系统和彻底的认知，故记录成文，以便加深印象和理解。<p>
+            <p>
+            <p>在深入了解http缓存之前，先通过一个例子来感受一下缓存的使用，这里以访问百度首页为例，使用chrome浏览器测试。</p>
+            <div class="img-box">
+              <img src="../../images/it/web/20161217/baidu.png">
+            </div>
+            <p>以上截图是访问百度logo的网络请求，这里需要注意<strong>Staus Code:304 Not Modified</strong>这个参数，从字面上理解就是没有改变，就是告诉浏览器这个资源从缓存里面加载，这样就降低了网络请求的成本，而且页面加载速度也会更快。那这里有个问题，服务器告诉浏览器资源未过期的依据是什么，我们再看一下具体的请求头和响应头信息：</p>
+            <div class="img-box">
+              <img src="../../images/it/web/20161217/bd-request.png">
+            </div>
+            <p class="txt-center">(请求头)</p>
+            <div class="img-box">
+              <img src="../../images/it/web/20161217/bd-response.png">
+            </div>
+            <p class="txt-center">(相应头)</p>
+            <p>
+              这里需要注意Cache-Control,if-Modified-Since,if-None-Match,Expires,ETag这几个属性，他们与缓存有紧密联系，在理解上诉网络请求前，需要了解这些头信息得作用和含义，接下来首先来看Cache-Control属性：
+            </p>
+            <p class="chapter-item">
+              1.Cache-Control
+            </p>
+            <p class="chapter-item">
+              Cache-Control翻译过来就是缓存控制，它有几个可选项，对应不同的缓存情况;
+            </p>
+            <table class="display-tb">
+              <thead>
+                <th>参数取值</th>
+                <th>参数说明</th>
+              </thead>
+              <tr>
+                <td>public</td>
+                <td>所有内容都将被缓存，包括代理服务器和客户端</td>
+              </tr>
+              <tr>
+                <td>private</td>
+                <td>所有内容都将被缓存，只包括客户端</td>
+              </tr>
+              <tr>
+                <td>no-cache</td>
+                <td>不建议缓存，客户端依然会缓存</td>
+              </tr>
+              <tr>
+                <td>no-store</td>
+                <td>所有缓存都不会缓存</td>
+              </tr>
+              <tr>
+                <td>max-age</td>
+                <td>缓存将在指定的时间后失效，时间单位为秒，优先级比Expires高</td>
+              </tr>
+            </table>
+            <p class="chapter-item">
+              2.if-Modified-since/Last-Modified
+            </p>
+            <p>
+              这两个参数单位都是时间格式，用于校验请求资源是否过期，if-Modified-since是时间格式，表示资源最后修改的时间，客户端发起请求的时候会携带此字段，当然，这个if-Modified-since不是随便设置的，是客户端第一次请求资源的时候返回到客户端的Last-Modified，具体过程如下：
+            </p>
+            <div class="img-box">
+              <img src="../../images/it/web/20161217/modified.png">
+            </div>
+            <p>
+              当服务端接收到if-Modified-since的时候，就会检查资源是否过期，如果没有过期，就返回304状态码，告诉浏览器用本地缓存就行啦，反之则返回最新的资源。
+            </p>
+
+            <p class="chapter-item">
+              3.if-None-Match/ETag
+            </p>
+            <p>
+              这两个参数取值都是字符串形式，定义为请求变量的实体值，用来判断资源是否改变，其中ETag是服务端返回给客户端的标识，if-None-Match是客户端发送给服务端的检测标识，与ETag对应，这两个参数与if-Modified-since/Last-Modified都是用来判断资源是否过期，不同点在于if-Modified-since/Last-Modified判断的时资源最后修改的日期，if-None-Match/ETag可以是资源的任何属性，因此判断的范围更广泛，if-None-Match/ETag的具体过程与if-Modified-since/Last-Modified类似，这里就省略。
+            </p>
+            <p class="chapter-item">
+              4.Expires
+            </p>
+            <p>控制资源失效的时间，该时间是以客户端的时间为基准进行比较的，如果客户端与服务端的时间不同步，就有可能出现资源缓存提前失效的问题。</p>
+            <p>在熟悉了上述几个属性之后，我们就可以对刚开始的百度图片请求响应事例做一个简单的解释：请求头的if-Modified-Since显示最后一次修改的时间为:Wed,03 Sep 2014 10:00:27 GMT，if-None-Match标识为：1ec5-502264e2ae4c0,响应头的ETag与请求头的if-None-Match一致，说明资源没有做修改，Expires告诉浏览器到2026年才失效。</p>
+          </div><!--end of content-->
+        </div>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="../../js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="../../js/jquery.smoothState.js"></script>
+      <script type="text/javascript" src="../../js/common.js"></script>
+      <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>

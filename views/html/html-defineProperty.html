@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>defineProperty</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="../../css/common.css">
+   <link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="../../css/page.css">
+   <link rel="stylesheet" type="text/css" href="../../css/article.css">
+ </head>
+ <body>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="../../index.html">首页</a>
+         <a href="../../about.html">关于</a>
+         <a href="../../works.html">作品</a>
+         <a href="../../it.html" class="cur">技术</a>
+         <a href="../../contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="../../about.html">关于</a></li>
+            <li><a href="../../works.html">作品</a></li>
+            <li class="cur"><a href="../../it.html">技术</a>
+            <li><a href="../../contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+        <div class="it-acticle trans-bg">
+          <h3>defineProperty</h3>
+          <div class="info">
+            <span class="date">发布时间：2016-12-21</span>
+            <span class="tag">标签:html</span>
+          </div>
+          <div class="content">
+            <p>defineProperty方法在平时工作当中并没有直接接触，在最近两天浏览技术网站时，偶然看到该函数的使用，觉得还蛮有意思，因此查询资料做了一番了解，defineProperty，顾名思义，定义属性，可以设置属性默认值，是否可修改，是否可枚举等<p>
+            <p>
+            <p class="chapter-title">1.参数</p>
+            <p class="chapter-item">
+              <p>Object.defineProperty(obj,propertyName,descriptor)</p>
+              <ul>
+                <li>1.obj:目标对象</li>
+                <li>2.propertyName:属性名称</li>
+                <li>3.descriptor:描述符</li>
+              </ul>
+            </p>
+            <p class="chapter-title">1.使用</p>
+            <pre>var obj_1={"name":"xiaoming"};</pre>
+            <pre>function test(obj,propertyName){</pre>
+            <pre>   var oldValue=obj[propertyName]</pre>
+            <pre>   Object.defineProperty(obj,"name",{</pre>
+            <pre>     enumerable:true,</pre>
+            <pre>     set:function(newValue){</pre>
+            <pre>       oldValue=newValue;</pre>
+            <pre>       console.log(newValue);</pre>
+            <pre>     }</pre>
+            <pre>   });</pre>
+            <pre>}</pre>
+            <pre>test(obj_1,"name")</pre>
+            <pre>obj_1.name="zkg";</pre>
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              1.当对象属性name改变的时候，将会触发set函数</br>
+            </p>
+
+            <p class="chapter-title">2.方法概述</p>
+            <p class="chapter-item">
+              说明：set/get不能和value/writable一起使用，两组属性互斥；
+            </p>
+            <pre>var obj_1={"name":"xiaoming"};</pre>
+            <pre>function test(obj,propertyName){</pre>
+            <pre>   var oldValue=obj[propertyName]</pre>
+            <pre>   Object.defineProperty(obj,"name",{</pre>
+            <pre>     enumerable:true,</pre>
+            <pre>     <strong>value:"123",</strong></pre>
+            <pre>     <strong>set:function(newValue){</strong></pre>
+            <pre>       oldValue=newValue;</pre>
+            <pre>       console.log(newValue);</pre>
+            <pre>     }</pre>
+            <pre>   });</pre>
+            <pre>}</pre>
+            <pre>test(obj_1,"name")</pre>
+            <pre></pre>
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              1.由于同时设置了set和value互斥方法，因此控制台会出现Invalid property descriptor的错误</br>
+            </p>
+
+            <p class="chapter-title">2.综合实例</p>
+            <p class="chapter-item">
+              说明：目前mvvm前端框架如vue的双向数据绑定就是依靠此方法完成,下面完成一个单向数据绑定,在输入框中输入数据，文本标签自动更新数值；
+            </p>
+            <pre>&lt;body&gt;</pre> 
+            <pre>    &lt;p id="obj_name"&gt;</p></pre>
+            <pre>    &lt;p id="obj_age"&gt;</p></pre>
+            <pre>    &lt;input type="text" id="name"&gt;</pre>
+            <pre>    &lt;input type="text" id="age"&gt;</pre>
+            <pre>&lt;/body&gt;</pre>
+            <pre>var obj={"name":"zkg","age":20};</pre>
+
+            <pre>document.addEventListener("DOMContentLoaded",function(e){</pre>
+            <pre>    initEvent();</pre>
+            <pre>    initModel();</pre>
+            <pre>});</pre>
+
+            <pre>function initModel(){</pre>
+            <pre>    observe(obj,"name");</pre>
+            <pre>    observe(obj,"age");</pre>
+            <pre>    showModel();</pre>
+            <pre>}</pre>
+
+            <pre>function observe(obj,propertyName){</pre>
+            <pre>    var old=obj[propertyName];</pre>
+            <pre>    Object.defineProperty(obj,propertyName,{</pre>
+            <pre>        enumerable:true,</pre>
+            <pre>        set:function(v){</pre>
+            <pre>            old=v;</pre>
+            <pre>            showModel();</pre>
+            <pre>        },</pre>
+            <pre>        get:function(){</pre>
+            <pre>            return old;</pre>
+            <pre>        }</pre>
+            <pre>    });</pre>
+            <pre>}</pre>
+            <pre>var showModel=function(){</pre>
+            <pre>    var obj_name=null;</pre>
+            <pre>    var obj_age=null;</pre>
+            <pre>    return function(){</pre>
+            <pre>        if(!obj_name){</pre>
+            <pre>            obj_name=document.getElementById("obj_name");</pre>
+            <pre>            obj_age=document.getElementById("obj_age");</pre>
+            <pre>        }</pre>
+            <pre>        obj_name.innerText=obj.name||"";</pre>
+            <pre>        obj_age.innerText=obj.age||"";</pre>
+            <pre>    };</pre>
+            <pre>}();</pre>
+            <pre>function initEvent(){</pre>
+            <pre>    handleEvent(document.getElementById("name"),"input",function(e){</pre>
+            <pre>        obj.name=getEventTarget(e).value;</pre>
+            <pre>    });</pre>
+            <pre>    handleEvent(document.getElementById("age"),"input",function(e){</pre>
+            <pre>        obj.age=getEventTarget(e).value;</pre>
+            <pre>    });</pre>
+            <pre>}</pre>
+            <pre>function getEventTarget(e){</pre>
+            <pre>    return e.target||e.srcElement;</pre>
+            <pre>}</pre>
+            <pre>function handleEvent(element,type,fn){</pre>
+            <pre>    if(element.detachEvent){</pre>
+            <pre>        element.detachEvent(type,fn);</pre>
+            <pre>    }else if(element.addEventListener){</pre>
+            <pre>        element.addEventListener(type,fn,false);</pre>
+            <pre>    }else{</pre>
+            <pre>        element["on"+type]=fn;</pre>
+            <pre>    }</pre>
+            <pre>}</pre>
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              输入框绑定输入事件，修改数据模型，在修改数据模型时触发set函数，在set函数中添加处理回调函数，从而修改p标签的显示；</br>
+            </p>
+          </div><!--end of content-->
+        </div>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="../../js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="../../js/jquery.smoothState.js"></script>
+      <script type="text/javascript" src="../../js/common.js"></script>
+      <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>
