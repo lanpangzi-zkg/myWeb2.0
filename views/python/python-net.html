@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>技术-网络操作</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="../../css/common.css">
+   <link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="../../css/page.css">
+   <link rel="stylesheet" type="text/css" href="../../css/article.css">
+ </head>
+ <body>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="../../index.html">首页</a>
+         <a href="../../about.html">关于</a>
+         <a href="../../works.html">作品</a>
+         <a href="../../it.html" class="cur">技术</a>
+         <a href="../../contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="../../about.html">关于</a></li>
+            <li><a href="../../works.html">作品</a></li>
+            <li class="cur"><a href="../../it.html">技术</a>
+            <li><a href="../../contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+        <div class="it-acticle trans-bg">
+          <h3>python基础学习--网络操作</h3>
+          <div class="info">
+            <span class="date">发布时间：2016-12-14</span>
+            <span class="tag">标签:python</span>
+          </div>
+          <div class="content">
+            <p>在学习过程中，发现很多人使用python编写网络爬虫工具，抓取数量巨大，并对数据进行提取分析，俨然数据挖掘的感觉，在学习了python最基本的知识后，接下来决定涉足一下网络编程的知识，期望最终自己也能实现一个网络爬虫。</p>
+            <p>首先动手写一个简单的网络请求，访问百度首页，然后将网页内容以txt格式存储在本地:</p>
+            <pre>import urllib.request as req</pre>
+            <pre>try:</pre>
+            <pre>   response=req.urlopen('http://www.baidu.com/')</pre>
+            <pre>   f=open('baidu.txt','w')</pre>
+            <pre>   for i in response.readlines():</pre>
+            <pre>       f.write(str(i))</pre>
+            <pre>   f.close()</pre>
+            <pre>except urllib.error.URLError as error:</pre>
+            <pre>   print(error)</pre>
+            <p>通过上面的简单实例，可以感受一下python的网络请求过程，不是很复杂，但是国外有大神觉得还不够简洁，不符合python的编程哲学，编写了requests模块，后面将具体说明，这里需要先了解urlopen方法的使用。</p>
+            <p class="chapter-title">1.url.request.urlopen(url|Request[,data])</p>
+            <p class="chapter-item">
+              说明：
+            </p>
+            <p>
+              1.第一个参数可以直接传递一个url地址，或者传递Request对象；
+            </p>
+            <pre>......</pre>
+            <pre>req=urllib.request.Request('http://www.baidu.com/')</pre>
+            <pre>res=urllib.request.urlopen(req)</pre>
+            <pre>......</pre>
+            <p>
+              2.data参数可以使用post方法提交数据到服务器。
+            </p>
+            <pre>import urllib.parse as parse</pre>
+            <pre>import urllib.request as req</pre> 
+            <pre>import urllib.error as error</pre>
+
+            <pre>try:</pre>
+            <pre>   param=parse.urlencode({"name":"neo","age":20}).encode("utf-8")</pre>
+            <pre>   response=req.urlopen('http://127.0.0.1:8080',param)</pre>
+            <pre>   print(response.read())</pre>
+            <pre>except error.HTTPError as h:</pre>
+            <pre>   print("HTTPError")</pre>
+            <pre>except error.URLError as e:</pre>
+            <pre>   print("URLError")</pre>
+
+            <p class="chapter-title">2.requests</p>
+
+            <p>前面提到requests模块，该模块十分好用，因此将学习精力主要放在该模块上面，使用前需要使用pip安装，安装成功后就能导入使用啦，先来一个简单的demo：</p>
+
+            <pre>import requests</pre>
+            <pre>response=requests.get('http://www.baidu.com/')</pre>
+            <pre>response.headers #响应头</pre>
+            <pre>response.status_code #状态码</pre>
+            <pre>response.text #响应正文</pre>
+            <p>比起上面使用python自带的模块，更加简单，也更加容易理解，实在是好用，接下来将认识到更复杂的使用。</p>
+            <p class="chapter-title">2.1 get方式提交数据</p>
+
+            <pre>import requests</pre>
+            <pre>response=requests.get('http://127.0.0.1:8080',params={"name":"zkg","age":20})</pre>
+            <pre>print(response.headers)</pre>
+            <pre>print(response.status_code)</pre>
+            <pre>print(response.text)</pre>
+            
+            <p class="chapter-title">2.2 post方式提交数据</p>
+
+            <pre>import requests</pre>
+            <pre>response=requests.post('http://127.0.0.1:8080',data={"name":"zkg","age":20})</pre>
+            <pre>print(response.headers)</pre>
+            <pre>print(response.status_code)</pre>
+            <pre>print(response.text)</pre>
+            <p>requests还支持诸如put,delete,options,head这些方法，使用方式与上面的实例相似。</p>
+            <p class="chapter-title">2.3自定义UA</p>
+            <p>有时候在访问网络资源的时候，服务器会检查请求的头信息，比如user-agent，利用requets模块可以轻松实现数据的模拟，只需要添加headers参数即可：</p>
+            <pre>def download_image():</pre>
+            <pre>  headers={'User-Agent':'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'}</pre>
+            <pre>  img_url='http://file5.u148.net/2016/12/minimg/148271733329868POXR5PM.jpg'</pre>
+            <pre>  response=requests.get(img_url,headers=headers,stream=True)</pre>
+            <pre>  with open('demo.jpg','wb') as f:</pre>
+            <pre>    for chunck in response.iter_content(128):</pre>
+            <pre>      f.write(chunck)</pre>
+            <p>上面的例子实现了一个图片下载功能，采用流的形式读写，并伪造了user-agent。</p>
+          </div>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="../../js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="../../js/jquery.smoothState.js"></script>
+      <script type="text/javascript" src="../../js/common.js"></script>
+      <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>

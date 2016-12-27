@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>css基础一</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="../../css/common.css">
+   <link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="../../css/page.css">
+   <link rel="stylesheet" type="text/css" href="../../css/article.css">
+ </head>
+ <body>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="../../index.html">首页</a>
+         <a href="../../about.html">关于</a>
+         <a href="../../works.html">作品</a>
+         <a href="../../it.html" class="cur">技术</a>
+         <a href="../../contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="../../about.html">关于</a></li>
+            <li><a href="../../works.html">作品</a></li>
+            <li class="cur"><a href="../../it.html">技术</a>
+            <li><a href="../../contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+        <div class="it-acticle trans-bg">
+          <h3>css</h3>
+          <div class="info">
+            <span class="date">发布时间：2016-12-25</span>
+            <span class="tag">标签:css</span>
+          </div>
+          <div class="content">
+            <p>css在日常工作当中用得虽然比较多，但是很多细节却不是十分清楚，最近一段时间在学习其他的一些东西，好久都没有学习css的相关知识了，今天抽空学习一下。<p>
+            <p>
+            <p class="chapter-title">1.css命名规范</p>
+            <p>首先想说一下选择器的命名规范，平常工作当中基本都是使用小些字母来命名，但是其命名的字符范围包括：数字(0~9)，字母(a-zA-z)，下划线(_)，连字符(-)，还有其他转义字符，对于首字符也有要求，不能是或者连字符+数字开头，至少一个字符，现在动手写个demo看一下效果，以谷歌浏览器为测试工具：</p>
+            <pre>&lt;p class="123abc">class is 123abc&lt;/p&gt;</pre>
+            <pre>&lt;p class="-123">class is -123&lt;/p&gt;</pre>
+            <pre>&lt;p class="-">class is -&lt;/p&gt;</pre>
+            <pre>&lt;p class="_123">class is _123&lt;/p&gt;</pre>
+            <pre>&lt;p class="abc123">class is abc123&lt;/p&gt;</pre>
+            <div class="img-box">
+              <img src="../../images/it/css/20161225/css-1.png">
+            </div>
+            <p>对上面的所有class添加了字体颜色为红色样式，可以看出前三个都是没有正确识别的，因此在实际使用过程当中尽量使用字母为开头字符会比较好，下划线用得就比较少，但是如果想使用其他字符，就需要转义了，还是上面的实例，稍作如下修改即可使class="123abc"的样式得到匹配:</p>
+
+            <pre> .\31 23abc{</pre>
+            <pre>   color:red;</pre>  
+            <pre> }</pre>
+            <p>
+            由于命名规范的原因，因此不能直接使用数字1作为开头，但是使用1对应的unicode编码就可以，这里需要注意的是unicode编码后面需要添加空格。
+            </p>
+            <p>在其他编程语言当中，也会遇到字符转义的问题，为什么需要转义，有两个原因：1.有些字符已经用作表示其他意思了，作为了特殊的字符，如果需要使用它们本身的符号，就需要转义，比如在css当中，[!.,:'"{}#|~()*=&%]等这些特殊字符，它们往往用作css语法规范与定义，因此如果要使用它们本来的意思，就需要转义；2.使用转义字符来表示字符集中定义的字符，比如车换行空格等字符，这些字符都没有现成的文字代号。所以只能用转义字符来表示。基于上述原因，在css中使用特殊字符:的时候，我们添加\进行转义，或者使用unicode编码，具体实例如下：</p>
+            <pre>.\:a1{</pre>
+            <pre>  color: #fff;</pre>
+            <pre>}</pre>
+            <pre>.\3a a1{</pre>
+            <pre>  background-color: blue;</pre>
+            <pre>}</pre>
+            <pre>&lt;p class=":a1">class is :a1&lt;/p&gt;</pre>
+            <div class="img-box">
+              <img src="../../images/it/css/20161225/css-2.png">
+            </div>
+            <p>参考资料：https://mathiasbynens.be/notes/css-escapes</p>
+          </div><!--end of content-->
+        </div>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="../../js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="../../js/jquery.smoothState.js"></script>
+      <script type="text/javascript" src="../../js/common.js"></script>
+      <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>

@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>技术-文件操作</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="../../css/common.css">
+   <link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="../../css/page.css">
+   <link rel="stylesheet" type="text/css" href="../../css/article.css">
+ </head>
+ <body>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="../../index.html">首页</a>
+         <a href="../../about.html">关于</a>
+         <a href="../../works.html">作品</a>
+         <a href="../../it.html" class="cur">技术</a>
+         <a href="../../contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="../../about.html">关于</a></li>
+            <li><a href="../../works.html">作品</a></li>
+            <li class="cur"><a href="../../it.html">技术</a>
+            <li><a href="../../contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+        <div class="it-acticle trans-bg">
+          <h3>python基础学习--文件操作</h3>
+          <div class="info">
+            <span class="date">发布时间：2016-12-14</span>
+            <span class="tag">标签:python</span>
+          </div>
+          <div class="content">
+            <p>对于文件读写，python提供了丰富简单的API供我们使用，今天就对读写做一个简单的概括。<p>
+            <p class="chapter-title">1.open(file_name[,access_mode][,buffering])</p>
+            <p class="chapter-item">
+              说明：返回一个file对象，file_name为文件名，access_mode指定打开文件模式，默认为只读(r)，buffering为缓冲区大小;
+            </p>
+            <div class="img-box">
+              <img src="../../images/it/python/20161214/access-mode.png">
+              <p>access_mode模式图解</p>
+            </div>
+            <p class="chapter-item">
+              读取文件：
+            </p>
+            <pre>import os</pre>
+            <pre>def readFile(filePath):</pre>
+            <pre>  if os.path.isfile(filePath):</pre>
+            <pre>     f=open(filePath)</pre>
+            <pre>     print(f.read())</pre>
+            <pre>     f.close()</pre>
+            <pre>  else:</pre>
+            <pre>     print(filePath,'is not exsit')</pre>
+            <pre>readFile('haha.txt')</pre>
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              上述实例尝试读取txt文件，默认只读模式打开文件，如果问价不存在，则给予提示</br>
+            </p>
+            <p class="chapter-title">
+             2.read([size]):从打开的文件中读取字符串，可以是二进制数据
+            </p>
+            <p class="chapter-item">
+              说明：read方法会一次性将所有内容读取出来；
+            </p>
+            <p class="chapter-title">
+             3.readlines([size]):一次性读取所有内容，然后拆分成list
+            </p>
+            <p>将上面的实例略做修改，使用readlines读取文件：</p>
+            <pre>......</pre>
+            <pre>f=open(filePath)</pre>
+            <pre>for line in f.readlines():</pre>
+            <pre>    print(line)</pre>
+            <pre>f.close()</pre>
+            <pre> ......</pre>
+            <p class="chapter-title">
+             4.readline(size):读取一整行
+            </p>
+            <pre>......</pre>
+            <pre>f=open(filePath)</pre>
+            <pre>print(line.readline())</pre>
+            <pre>f.close()</pre>
+            <pre> ......</pre>
+            <p class="chapter-item">
+              readline默认只会读取一行数据，如果要读取所有内容，需要使用循环，具体如下：
+            </p>
+            <pre>......</pre>
+            <pre>f=open(filePath)</pre>
+            <pre>isEnd=False</pre>
+            <pre>while not isEnd:</pre>
+            <pre>  line=f.readline()</pre>
+            <pre>  if (line!=''):</pre>
+            <pre>    print(line)</pre>
+            <pre>  else:</pre>
+            <pre>    isEnd=True</pre>
+            <pre>f.close()</pre>
+            <pre> ......</pre>
+
+            <p class="chapter-title">
+             5.write(str):将内容写入指定文件，内容为二进制或者文本字符串
+            </p>
+            <pre>def appendToFile(filePath,content):</pre>
+            <pre>  if os.path.isfile(filePath):</pre>
+            <pre>    f=open(filePath,'a')</pre>
+            <pre>    f.write(content)</pre>
+            <pre>  else:</pre>
+            <pre>    print(filePath,'is not exsit')</pre>
+            <pre>appendToFile('haha.txt','abc123')</pre>
+            <p class="chapter-item">
+              说明：
+            </p>
+            <p class="note">
+              以追加的模式打开文件，如果文件存在就将内容添加到末尾，如果没有就创建文件</br>
+            </p>
+            <p class="chapter-title">
+             6.writelines(list):写入list类型的数据
+            </p>
+            <pre>def appendListToFile(filePath,listdata):</pre>
+            <pre>  if os.path.isfile(filePath):</pre>
+            <pre>    f=open(filePath,'a')</pre>
+            <pre>    f.writelines(listdata)</pre>
+            <pre>  else:</pre>
+            <pre>    print(filePath,'is not exsit')</pre>
+            <pre>appendListToFile('haha.txt',['\na','\nb','\nc'])</pre>
+            <p class="chapter-item">
+              说明：
+            </p>
+            <p class="note">
+              手动添加换行符\n</br>
+            </p>
+            <p class="chapter-title">
+             7.tell():当前位置</br>
+             8.seek(offset[,from]):改变当前位置</br>
+             9.路径</br>
+            </p>
+            <p class="chapter-item">
+              说明：路径操作需要引入os模块
+            </p>
+            <pre>import os</pre>
+            <pre>print(os.path.isfile('haha.txt')) #是否是文件</pre>
+            <pre>os.remove('haha.txt') #删除文件</pre>
+            <pre>print(os.access('haha.txt',os.F_OK)) #文件是否存在</pre>
+            <pre>print(os.access('haha.txt',os.R_OK)) #文件是否可读</pre>
+            <pre>print(os.access('haha.txt',os.W_OK)) #文件是否可写</pre>
+            <pre>print(os.access('haha.txt',os.X_OK)) #文件是否可执行</pre>
+            <p class="chapter-title">
+              10.目录
+            </p>
+            <p class="chapter-item">
+              说明：路径操作需要引入os模块
+            </p>
+            <pre>import os</pre>
+            <pre>os.getcwd() #当前路径</pre>
+            <pre>os.mkdir('testdir') #创建目录，如果已存在，则报错，不能重新创建</pre>
+            <pre>os.chdir('d:/') #跳转到指定目录</pre>
+            <pre>os.rmdir('testdir') #删除目录，目录下的所有内容都会删除</pre>
+            <pre>os.listdir() #罗列出目录下的所有文件及文件夹,如果目录不存在，则会报错</pre>
+            <pre>os.path.isdir('testdir') #判断是否是目录</pre>
+            <pre>os.path.exists('testdir') #判断目录是否存在</pre>
+            <pre>os.rename('testdir','newdir') #重命名文件或者文件夹</pre>
+            <p class="chapter-item">介绍完主要的文件相关操作，接下来动手写一个比较综合的例子，读取给定文件夹下面的所有文件，并加密文件内容：</p>
+            <pre>import os</pre>
+            <pre>import hashlib</pre>
+            <pre>def createTestFolder(folderName):</pre>
+            <pre>  if not os.path.exists(folderName):</pre>
+            <pre>    os.mkdir(folderName)</pre>
+            <pre>  for i in range(10):</pre>
+            <pre>    f=open(folderName+'/hello-'+str(i)+'.txt','w')</pre>
+            <pre>    f.write('this is text '+str(i))</pre>
+            <pre>    f.close()</pre>
+
+            <pre>def readTestFolder(folderName):</pre>
+            <pre>  if os.path.exists(folderName):</pre>
+            <pre>    filelist=os.listdir(folderName)</pre>
+            <pre>    for fn in filelist:</pre>
+            <pre>      readFile(folderName+"/"+fn)</pre>
+            <pre>  else:</pre>
+            <pre>    print(folderName+' is not exist')</pre>
+
+            <pre>def readFile(fn):</pre>
+            <pre>   if os.path.isfile(fn):</pre>
+            <pre>       f=open(fn,'w+')</pre>
+            <pre>       f.write(encodeStr(f.read()))</pre>
+            <pre>       f.close()</pre>
+
+            <pre>def encodeStr(s):</pre>
+            <pre>   h=hashlib.md5()</pre>
+            <pre>   h.update(s.encode('utf-8'))</pre>
+            <pre>   return h.hexdigest()</pre>
+
+            <pre>testFolderName='one'</pre>
+            <pre>createTestFolder(testFolderName)</pre>
+            <pre>readTestFolder(testFolderName)</pre>
+            <p class="chapter-item">
+              说明：加密使用到了hashlib模块的md5加密算法，目前很多勒索病毒都使用了事例中类似的手法，只不过加密等级是银行U盾级别的，破解几乎是不可能的。
+            </p>
+        </div>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="../../js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="../../js/jquery.smoothState.js"></script>
+      <script type="text/javascript" src="../../js/common.js"></script>
+      <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>
