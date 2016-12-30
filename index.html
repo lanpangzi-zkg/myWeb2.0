@@ -6,10 +6,75 @@
    <meta name="viewport" content="width=device-width,initial-scale=1.0">
    <meta name="apple-mobile-web-app-capable" content="yes" />
    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-   <link rel="stylesheet" type="text/css" href="css/index.css">
    <link rel="stylesheet" type="text/css" href="css/common.css">
    <link rel="stylesheet" type="text/css" href="css/normalize.css">
    <link rel="stylesheet" type="text/css" href="css/page.css">
+   <style type="text/css">
+    .header{
+      position: fixed;
+      width: 100%;
+      top:0px;
+      left: 0px;
+      animation:dropDown 1s ease;
+    }
+    .header.out{
+      transition:transform 0.5s ease;
+        transform:translateY(-100%);  
+    }
+    .menu{
+      text-align: right;
+      padding: 0.4em 0.4em 0;
+    }
+    .menu .menu-item{
+      float: right;
+        border: 1px solid #FFFFFF;
+    }
+    .menu:after{
+      content: "";
+      display: block;
+      clear: both;
+    }
+    .menu .menu-item+.menu-item{
+      border-right: none;
+    }
+    .menu .menu-item a{
+      color: #ffffff;
+        font-size: 1.2em;
+        width: 3.5em;
+        line-height: 1.8em;
+        display: inline-block;
+        text-align: center;
+        transition:all 0.3s ease-in;
+    }
+    .menu .menu-item a:hover{
+      background-color: #4D3F55;
+      color:#fff;
+    }
+    .content{
+        position: absolute;
+        left: 50%;
+        top:50%;
+        z-index: 9;
+        transform:translate(-50%,-50%);
+        opacity:0;
+    }
+    .content-in{
+        animation:fadeIn 1.2s linear 0.5s both;
+      }
+    .content.out{
+      animation:fadeOut 0.5s linear forwards;
+    }
+    .content{
+        color: #fff;
+    }
+    .content h1{
+      font-size: 2.8em;
+    }
+    .content p{
+        font-size: 2em;
+        opacity: inherit;
+    }
+   </style>
  </head>
  <body>
    	<div class="loading-c" id="load-c">
@@ -30,16 +95,21 @@
 					<li class="menu-item current"><a href="javascript:void(0);" class="home">首页</a></li>
 				 </ul>
 			</div>
-			<div class="content">
+			<div class="index-js content">
 				 <p>一个程序猿，偶尔仰望一下星空......</p>
 			</div>
 		</div>
     </div>  
     <div class="scripts" style="position: absolute; display: none; visibility: hidden">
       <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
-      <script type="text/javascript" src="js/jquery.smoothState.js"></script>
+      <!--<script type="text/javascript" src="js/jquery.smoothState.js"></script>-->
       <script type="text/javascript" src="js/common.js"></script>
       <script type="text/javascript" src="js/prefixfree.min.js"></script>
+      <script type="text/javascript">
+        window.onload=function(){
+          $(".index-js").addClass("content-in");
+        };
+      </script>
     </div>
  </body>
 </html>

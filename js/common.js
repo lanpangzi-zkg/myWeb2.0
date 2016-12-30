@@ -5,28 +5,28 @@ window.onload=function(){
 	});
     var $body=$("body");
     var $main=$("#main");
-    var $me;
     $main.on("click",toggleMenu);
-    var options={
-		onStart: {
-		  duration: 500,
-		  render: function(url, $container) {
-		  	$me.children().addClass('out');
-		  	if($main.hasClass("showMenu")){
-				$main.removeClass("showMenu");   
-		  	}
-		  }
-		},
-		onEnd: {
-		  duration: 300,
-		  render: function(url, $container, $content) {
-		  	$body.css('cursor', 'auto');
-            $body.find('a').css('cursor', 'auto');
-		    $container.html('');
-		    $content.appendTo($container);
-		  }
-		}
-	};
+ //    var $me;
+ //    var options={
+	// 	onStart: {
+	// 	  duration: 500,
+	// 	  render: function(url, $container) {
+	// 	  	$me.children().addClass('out');
+	// 	  	if($main.hasClass("showMenu")){
+	// 			$main.removeClass("showMenu");   
+	// 	  	}
+	// 	  }
+	// 	},
+	// 	onEnd: {
+	// 	  duration: 300,
+	// 	  render: function(url, $container, $content) {
+	// 	  	$body.css('cursor', 'auto');
+ //            $body.find('a').css('cursor', 'auto');
+	// 	    $container.html('');
+	// 	    $content.appendTo($container);
+	// 	  }
+	// 	}
+	// };
 	//$me=$main.smoothState(options);
 };
 // });

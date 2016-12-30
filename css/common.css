@@ -19,6 +19,41 @@ ul{
 a{
 	text-decoration: none;
 }
+.loading-c{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+.ball{ 
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;    
+    background-color: #43A8EA; 
+    animation:jump 1s cubic-bezier(0.33, 0.7, 0.66, 0.96) alternate infinite;
+}
+.loading{
+    position: relative;
+}
+.shadow{
+    width: 40px;
+    height: 10px;
+    position: absolute;
+    left: 0px;
+    bottom: -5px;
+    background: radial-gradient(#ccc, #eee, #fff);
+    animation:shadow_change 1s cubic-bezier(0.33, 0.7, 0.66, 0.96) alternate infinite;
+}
+.loading span{
+    display: inline-block;
+}
+.text{
+    position: relative;
+    bottom: 20px;
+    left: 5px;
+} 
 .trans-bg{
     position: relative;
 }
