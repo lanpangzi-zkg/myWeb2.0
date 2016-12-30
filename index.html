@@ -102,12 +102,13 @@
     </div>  
     <div class="scripts" style="position: absolute; display: none; visibility: hidden">
       <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
-      <!--<script type="text/javascript" src="js/jquery.smoothState.js"></script>-->
-      <script type="text/javascript" src="js/common.js"></script>
       <script type="text/javascript" src="js/prefixfree.min.js"></script>
       <script type="text/javascript">
         window.onload=function(){
-          $(".index-js").addClass("content-in");
+           $("#load-c").fadeOut("slow",function(){
+             $(".wrapper").addClass("wrapper-bg-show");
+             $(".index-js").addClass("content-in");
+          });
         };
       </script>
     </div>
