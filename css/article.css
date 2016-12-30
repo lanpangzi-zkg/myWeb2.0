@@ -1,5 +1,4 @@
 .it-acticle{
-  color: #fff;
   overflow: hidden;
 }
 .it-acticle h3{
@@ -28,16 +27,16 @@
 pre{
   position: relative;
   font-family: inherit;
-  background-color: #bfbfbf;
+  background-color: #f4f5f6;
   margin: 0;
 }
 pre:before{
   content: "";
   display: block;
   position: absolute;
-  width: 4px;
+  width: 2px;
   height: 100%;
-  background-color: #E91E63;
+  background-color: #9b4dca;
 }
 .txt-center{
   text-align: center;

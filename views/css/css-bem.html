@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>css命名规范--BEM</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="../../css/common.css">
+   <link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="../../css/page.css">
+   <link rel="stylesheet" type="text/css" href="../../css/article.css">
+ </head>
+ <body>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="../../index.html">首页</a>
+         <a href="../../about.html">关于</a>
+         <a href="../../works.html">作品</a>
+         <a href="../../it.html" class="cur">技术</a>
+         <a href="../../contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="../../about.html">关于</a></li>
+            <li><a href="../../works.html">作品</a></li>
+            <li class="cur"><a href="../../it.html">技术</a>
+            <li><a href="../../contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+        <div class="it-acticle trans-bg">
+          <h3>css命名规范--BEM</h3>
+          <div class="info">
+            <span class="date">发布时间：2016-12-27</span>
+            <span class="tag">标签:css</span>
+          </div>
+          <div class="content">
+            <p>BEM是由Yandex团队提出的一种前端命名方法论，这种方法可以使写出来的代码更容易理解和维护，用官网的话说，结构化的CSS和UI，更加灵活，方便其他人更容易融入团队，BEM包含三个内容，Block(块)，Element(元素)，Modifier(修饰符)，这三部分将页面里面的所有的内容分类归纳，话不多说，先看一下用BEM规则写出来的代码是什么样子的：<p>
+            <pre>------html-------</pre>
+            <pre>&lt;form class="form"&gt;</pre>
+            <pre>  &lt;input class="form__input" type="text"/&gt;</pre>
+            <pre>  &lt;input class="form__submit form__submit--disabled" type="submit"/&gt;</pre>
+            <pre>&lt;/form&gt;</pre>
+            <pre>------css-------</pre>
+            <pre>.form{...}</pre>
+            <pre>.form__input{...}</pre>
+            <pre>.form__submit{...}</pre>
+            <pre>.form__submit--disabled{...}</pre>
+            <p>form是一个独立的Block，里面包含两个input，通过form__input和form_submit，可以很直观的知道input和form之间的从属关系，form__submit--disabled就是对应不可用状态，很简单吧，就算不懂代码的人，也能很快就能看懂和理解，因此BEM是一个好东西，虽然看起来写法有点怪，不过习惯就好啦，下面详细讲解一下BEM。</p>
+            <p class="chapter-title">1.Block</p>
+            <p>Block是独立的实体，里面包含了其他元素或者嵌套其他的Block，从大的方面讲，一个界面就是不同的Block组成的：</p>
+            <div class="img-box">
+              <img src="../../images/it/css/20161227/bem-1.png">
+            </div>
+            <p>上图只是一个简单的分解，每一个相对独立成块，在实际情况中往往还会有其他Block嵌套形成更加复杂的界面，</p>
+            <p class="chapter-title">2.Element</p>
+            <p>元素就是具体的页面组件了，往往包含在其他Block当中，因此这里就存在一种包含于被包含的关系，如果不按照BEM规则来写的话就形同：</p>
+            <pre>&lt;form class="form"&gt;</pre>
+            <pre>  &lt;input class="input" type="text"/&gt;</pre>
+            <pre>  &lt;input class="submit" type="submit"/&gt;</pre>
+            <pre>&lt;/form&gt;</pre>
+            <p>这个就没有那么直观的展现元素与块的关系了，当然这个例子十分简单，如果在真实项目中，多人参与，各自按照自己的喜好来写，页面又复杂的话看起来就头疼了。</p>
+            <p>Element写法:Block+两个下划线+Element，因此对于实例中的input，写法就是form__input</p>
+            <p class="chapter-title">3.Modifier</p>
+            <p>Modifier负责标识行为或者外观，适用于Element和Block，行为和外观，就包括disabled,checked,hover,color,size这些东西，也很好理解，还是对照上述按照BEM规范写法的例子，form__submit--disabled说明这个是form下面的input元素不可用的状态，一目了然。写法是Block+两个下划线+Element+两个连字符。</p>
+            <p>使用BEM固然很好，但是明白那些地方可以不用也很重要，这个就需要自己慢慢去体会和积累了，目前我还没怎么使用，决定在以后工作当中逐渐使用这种方式。</p>
+          </div><!--end of content-->
+        </div>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="../../js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="../../js/jquery.smoothState.js"></script>
+      <script type="text/javascript" src="../../js/common.js"></script>
+      <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>
