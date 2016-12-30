@@ -1,5 +1,5 @@
-// $(document).ready(function(){
-window.onload=function(){
+$(document).ready(function(){
+// window.onload=function(){
     $("#load-c").fadeOut("slow",function(){
 	   $(".wrapper").addClass("wrapper-bg-show");
 	});
@@ -28,8 +28,8 @@ window.onload=function(){
 	// 	}
 	// };
 	//$me=$main.smoothState(options);
-};
-// });
+// };
+});
  function toggleMenu(e){
  	if(e.target.nodeName.toLowerCase()=="i"||e.target.id=="drawer"){
  	  var $main=$("#main");
