@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>nodejs-proxy</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="../../css/common.css">
+   <link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="../../css/page.css">
+   <link rel="stylesheet" type="text/css" href="../../css/article.css">
+ </head>
+ <body>
+    <div class="loading-c" id="load-c">
+      <div class="loading" id="loading">
+          <span class="ball"></span>
+          <span class="shadow"></span>
+          <span class="text">加载中......</span>
+      </div>
+    </div>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="../../index.html">首页</a>
+         <a href="../../about.html">关于</a>
+         <a href="../../works.html">作品</a>
+         <a href="../../it.html" class="cur">技术</a>
+         <a href="../../contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="../../about.html">关于</a></li>
+            <li><a href="../../works.html">作品</a></li>
+            <li class="cur"><a href="../../it.html">技术</a>
+            <li><a href="../../contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+        <div class="it-acticle trans-bg">
+          <h3>基于nodejs的跨域代理</h3>
+          <div class="info">
+            <span class="date">发布时间：2017-01-03</span>
+            <span class="tag">标签:nodejs,proxy</span>
+          </div>
+          <div class="content">
+            <p>对于前端开发的童鞋，如果涉及到和后端协同开发，有可能会碰到跨域的问题，对于解决跨域的问题，目前有几种解决方式，例如可以通过jsonp访问服务端，设置相应头access-control-allow-origin属性等等，而今天主要讨论的是基于nodejs的跨域解决方案。而这篇文章是我前段时间发布到简书上的一篇文章，现在一并整理。<p>
+            <p>基于nodejs的跨域解决方案优点在于浏览器兼容性好，支持多种网络请求方式，在正式介绍前，先了解一下request模块,request模块是专门负责网络请求访问的模块，使用方式十分简单：
+            </p>
+            <pre>var request=require("request");</pre>
+            <pre>request.get("http://www.baidu.com/",function(error,response,body){</pre>
+            <pre>  console.log(body);</pre>
+            <pre>});</pre>
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              运行试例前，先需要通过npm安装request模块。</br>
+            </p>
+            <p>以上试例完成了一个简单的网络请求，request模块功能不止于此，下面再看一个例子：</p>
+            <pre>var request=require("request");</pre>
+            <pre>var options={</pre>
+            <pre>  url:"http://www.test.com/"，</pre>
+            <pre>  body:{"param1":"a"},</pre>
+            <pre>};</pre>
+            <pre>reuqest(options,function(error,response,body){</pre>
+            <pre>   ......</pre>
+            <pre>});</pre>
+            <p>上面的例子中，通过request提交参数到服务器中，使用起来也是十分的简单，还有其他使用方法和说明，可参考https://github.com/request/request。</p>
+            <p>简单介绍完request模块之后，我们开始今天的主题，在前端网站开发过程中，网络请求指向nodejs提供的接口，nodejs服务端再发起请求指向跨域的服务器，然后依次返回到前端页面，这样就完成了跨域的访问，基本上就满足了跨域访问的问题了，接下来我们来看一下完整的实现：</p>
+
+            <pre>var options={</pre>
+            <pre>   url:"http://www.test.com/"，</pre>
+            <pre>   headers:{</pre>
+            <pre>     "Authorization":"auth"</pre>
+            <pre>   },</pre>
+            <pre>   body:{"param1":"a","param2":"b"},</pre>
+            <pre>   json:true</pre>
+            <pre>};</pre>
+            <pre>function handleHttpRequest(req,res){</pre>
+            <pre>  reuqest(options,function(error,response,body){</pre>
+            <pre>     if(!error&&response.statusCode==200){</pre>
+            <pre>        console.log("body");</pre>
+            <pre>        res.write(body);</pre>
+            <pre>        res.end();</pre>
+            <pre>  }else{</pre>
+            <pre>       res.write("error:"+error);</pre>
+            <pre>  }</pre>
+            <pre>});}</pre>
+
+            <pre>exports.handleHttpRequest=handleHttpRequest;</pre>
+            <p>以上proxy.js作为handleHttpRequest模块暴露出来供下面的server.js调用：</p>
+            <pre>var http=require("http");</pre>
+            <pre>var proxy=require("./proxy");</pre>
+            <pre>function runServer(requestConfig){</pre>
+            <pre>   http.createServer(function(request,response){</pre>
+            <pre>     proxy.sendHttpRequest(request,response);</pre>
+            <pre>   }).listen(8080);</pre>
+            <pre>}</pre>
+            <p>上面的例子实现了请求认证和参数传递，能满足绝大多数网络请求，以上就是基于nodejs的跨域访问解决方案。</p>
+           
+          </div><!--end of content-->
+        </div>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="../../js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="../../js/common.js"></script>
+      <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>
