@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>react生命周期</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="../../css/common.css">
+   <link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="../../css/page.css">
+   <link rel="stylesheet" type="text/css" href="../../css/article.css">
+ </head>
+ <body>
+    <div class="loading-c" id="load-c">
+      <div class="loading" id="loading">
+          <span class="ball"></span>
+          <span class="shadow"></span>
+          <span class="text">加载中......</span>
+      </div>
+    </div>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="../../index.html">首页</a>
+         <a href="../../about.html">关于</a>
+         <a href="../../works.html">作品</a>
+         <a href="../../it.html" class="cur">技术</a>
+         <a href="../../contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="../../about.html">关于</a></li>
+            <li><a href="../../works.html">作品</a></li>
+            <li class="cur"><a href="../../it.html">技术</a>
+            <li><a href="../../contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+        <div class="it-acticle trans-bg">
+          <h3>React生命周期</h3>
+          <div class="info">
+            <span class="date">发布时间：2017-01-04</span>
+            <span class="tag">标签:react</span>
+          </div>
+          <div class="content">
+            <p>上一篇介绍了react的简单使用和一些基本概念之后，现在就进一步了解组件的生命周期，react的生命周期包含Mounting,updating,Unmounting三个主要阶段，看一下我从网上扒的一张图吧：<p>
+            <div class="img-box">
+              <img src="../../images/it/react/20170104/1.png" alt="">
+            </div>
+            <p>乍一看方法众多，有点晕，实际不会全部都用到这些方法，上图没有getDefaultProps方法，其他这个方法是最开始执行的方法，而componentWillReceiveProps,componentWillUnmount方法用得蛮少，就不细说了，接下来解一下主要方法吧；</p>
+            <p class="p-header">1.getDefaultProps</p>
+            <p>getDefaultProps是第一个执行方法，该方法返回一个对象，需要特殊说明的是如果属性是通过标签传递，如
+     ReactDOM.render(&lt;TestComponent title="haha"&gt;,document.getElementById("main"));
+     在getDefaultProps方法中是获取不到title属性的，但在该方法之后的方法均可访问到，由于该方法是第一个执行的初始化方法，因此可以理解成组件的属性都没有得到解析，因此不能访问属性，只能作为初始化属性对象的入口返回Object为后面使用;
+</p>
+            <p class="p-header">2.getInitialState</p>
+            <p>getInitialState函数返回一个对象，该对象改变会触发组件的重绘，通过setState设置state对象；</p>
+            <p class="p-header">3.componnentWillMount</p>
+            <p>第三个执行函数，这是组件被插入到DOM之前执行的函数；</p>
+            <p class="p-header">4.render</p>
+            <p>render是最重要的一个函数，负责渲染组件内容，每重新绘制组件，该方法都会被重新调用一次；</p>
+            <p class="p-header">5.componnentDidMount</p>
+            <p>这个方法也很好理解，组件被插入到DOM之后执行的函数；</p>
+            <p class="p-header">6.shouldComponentUpdate</p>
+            <p>这个函数有两个参数，分别是nextProps和nextState，该方法返回一个boolean值，返回true组件将会重新渲染，返回false则不会引起渲染，而判断是否需要重新渲染的依据就是nextState，判断state的值改变与否即可，比如return nextState.name!=this.state.name;</p>
+            <p class="p-header">7.componentWillUpdate</p>
+            <p>组件将要重绘前的回调函数；</p>
+            <p class="p-header">8.componentDidUpdate</p>
+            <p>组件将要重绘后的回调函数；</p>
+            <p>介绍完主要的回调函数之后，来看一下实例：</p>
+            <pre>&lt;div id="box">&lt;/div&gt;</pre>
+            <pre>&lt;script type="text/babel"&gt;</pre>
+            <pre>  var HelloReact=React.createClass({</pre>
+            <pre>      getInitialState:function(){</pre>
+            <pre>          console.log("getInitialState");</pre>
+            <pre>          return{"count":1};</pre>
+            <pre>      },</pre>
+            <pre>      getDefaultProps:function(){</pre>
+            <pre>          console.log("getDefaultProps");</pre>
+            <pre>          return {"title":"this is title"};</pre>
+            <pre>      },</pre>
+            <pre>      componentWillMount:function(){</pre>
+            <pre>          console.log("componentWillMount");</pre>
+            <pre>      },</pre>
+            <pre>      handleClick:function(){</pre>
+            <pre>          this.setState({"count":this.state.count+1});</pre>
+            <pre>      },</pre>
+            <pre>      render:function(){</pre>
+            <pre>          console.log("render");</pre>
+            <pre>          return(</pre>
+            <pre>          &lt;div&gt;</pre>
+            <pre>              &lt;input type="button" value="click me" onClick={this.handleClick}/&gt;</pre>
+            <pre>              &lt;p title={this.props.title}>{this.state.count}&lt;/p&gt;</pre>
+            <pre>          &lt;/div&gt;</pre>
+            <pre>          );</pre>
+            <pre>  },</pre>
+            <pre>  componentDidMount:function(){</pre>
+            <pre>      console.log("componentDidMount");</pre>
+            <pre>  },</pre>
+            <pre>  shouldComponentUpdate:function(nextProps,nextState){</pre>
+            <pre>      console.log("shouldComponentUpdate");</pre>
+            <pre>      return nextState.count!=this.state.count;</pre>
+            <pre>  },</pre>
+            <pre>  componentWillUpdate:function(nextProps,nextState){</pre>
+            <pre>      console.log("componentWillUpdate");</pre>
+            <pre>  },</pre>
+            <pre>  componentDidUpdate:function(prevProps,prevState){</pre>
+            <pre>      console.log("componentDidUpdate");</pre>
+            <pre>  }</pre>
+            <pre>});</pre>
+            <pre>ReactDOM.render(&lt;HelloReact/&gt;,document.getElementById("box"));</pre>
+            <pre>&lt;/script&gt;</pre>
+
+            <p class="chapter-title">当初次运行上面的代码时，依次执行：</p>
+            <p class="chapter-title">getDefaultProps->getInitialState->componentWillMount->render->componentDidMount</p>
+            <p class="chapter-title">点击按钮时，依次执行：</p>
+            <p class="chapter-title">shouldComponentUpdate->componentWillUpdate->render->componentDidUpdate</p>
+          </div><!--end of content-->
+        </div>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="../../js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="../../js/common.js"></script>
+      <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>

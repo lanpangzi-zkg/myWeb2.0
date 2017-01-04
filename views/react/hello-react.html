@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>hello-react</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="../../css/common.css">
+   <link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="../../css/page.css">
+   <link rel="stylesheet" type="text/css" href="../../css/article.css">
+ </head>
+ <body>
+    <div class="loading-c" id="load-c">
+      <div class="loading" id="loading">
+          <span class="ball"></span>
+          <span class="shadow"></span>
+          <span class="text">加载中......</span>
+      </div>
+    </div>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="../../index.html">首页</a>
+         <a href="../../about.html">关于</a>
+         <a href="../../works.html">作品</a>
+         <a href="../../it.html" class="cur">技术</a>
+         <a href="../../contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="../../about.html">关于</a></li>
+            <li><a href="../../works.html">作品</a></li>
+            <li class="cur"><a href="../../it.html">技术</a>
+            <li><a href="../../contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+        <div class="it-acticle trans-bg">
+          <h3>React基本使用</h3>
+          <div class="info">
+            <span class="date">发布时间：2017-01-03</span>
+            <span class="tag">标签:react</span>
+          </div>
+          <div class="content">
+            <p>现在的前端技术发展十分迅速，各种框架陈出不穷，让人觉得都快赶不上节奏了，我先了解了一下angular，mvvm框架，双向数据绑定很炫，确实与传统开发有很大区别，然后又发现了facebook推出的React，还有React-native能做app开发，这个比较合我胃口，那就决定花点时间学习一下吧。<p>
+            <p>React并不是一套完整的前段框架，而是一个专注于视图层(view)的库，它有着高效的页面渲染能力，这要归功于React的虚拟DOM，React将页面的真实DOM映射成Object对象，形成虚拟DOM，然后通过对比前后虚拟DOM的不同，再更新需要修改的DOM结构，从而避免了传统开发过程中，一个细小变化都将引起DOM树结构的重新渲染的问题，因此在性能上得到了很大的提高。
+            </p>
+            <p>现在来看一下简单的react程序是如何编写的：</p>
+            <pre><div id="box"></div></pre>
+            <pre>&lt;script type="text/babel"&gt;</pre>
+            <pre>    var HelloReact=React.createClass({</pre>
+            <pre>        getInitialState:function(){</pre>
+            <pre>            return {</pre>
+            <pre>                "name":"react"</pre>
+            <pre>            };</pre>
+            <pre>        },</pre>
+            <pre>        render:function(){</pre>
+            <pre>            return(</pre>
+            <pre>                &lt;div className="hello-react">{this.state.name}&lt;/div&gt;</pre>
+            <pre>                );</pre>
+            <pre>        }</pre>
+            <pre>    });</pre>
+            <pre>    ReactDOM.render(&lt;HelloReact/&gt;,document.getElementById("box"));</pre>
+            <pre>&lt;/script&gt;</pre>
+            <p class="chapter-item">
+              备注：
+            </p>
+            <p class="note">
+              运行上面的实例需要引用react.js,react-dom.js,browser.min.js三个库，具体说明可上<a href="https://facebook.github.io/react/">react官网</a>查看。</br>
+            <p>
+              react脚本type不是平常使用的text/javascript,而是text/babel,这个是jsx语法，揉合了js，html和css代码，关于jsx，可以自行百度一下，不多说，然后看一下脚本内部的内容，通过render方法返回页面需要显示内容，这里返回了一个class='hello-react'的div，里面包含了状态值为name的值，getInitialState返回一个状态对象，可以在后面的函数当中使用，在生命周期介绍里面会介绍该方法，这里就不说了，最后使用ReactDOM.render渲染到页面当中去，当然需要给组件一个父容器，这样就搞定啦。
+            </p>
+            <p>开发过程中时常需要观察组建的状态和属性等，使用chrome浏览器可以安装一个React Developer Tools插件，然后就可以十分方便的调试开发react了，插件效果如图：</p>
+            <div class="img-box">
+              <img src="../../images/it/react/20170103/1.png" alt="">
+            </div>
+            <p>在深入讲解react之前，先需要了解一下react的几个核心概念:</p>
+            <p>1.Component</p>
+            <p>Component是组件、模块的意思，上面的例子中HelloReact就是一个Component，简单来说就是js+html+css+数据=Component，在react程序当中，由许多Component组成，Component相互嵌套，形成功能更加复杂强大的复合型组件；</p>
+            <p>2.State</p>
+            <p>State直译就是状态，是react的状态机，与数据相关联，数据的改变会导致State的改变，State改变意味着数据的改变，State的改变会触发组件的重新渲染，官网上面解释说那些需要与用户交互或者服务器返回的数据作为State；</p>
+            <p>3.Props</p>
+            <p>Props是属性的简写，react的属性往往认为是不可变的，而他的作用常常用来父组件向子组件传递数据的方式，相当于html中的Attribute；</p>
+            <p>介绍完上面的概念之后，接下来写一个稍为复杂一点的例子：</p>
+            <pre>var HelloCount=React.createClass({</pre>
+            <pre>    getInitialState:function(){</pre>
+            <pre>        return {</pre>
+            <pre>            "count":1</pre>
+            <pre>        };</pre>
+            <pre>    },</pre>
+            <pre>    handleClick:function(){</pre>
+            <pre>        this.setState({"count":this.state.count+1});</pre>
+            <pre>    },</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>            &lt;div className="hello-react"&gt;</pre>
+            <pre>                &lt;input type="button" onClick={this.handleClick} value="click me"/&gt;</pre>
+            <pre>                &lt;p>{this.state.count}&lt;/p&gt;</pre>
+            <pre>            &lt;/div&gt;</pre>
+            <pre>            );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+            <pre>ReactDOM.render(&lt;HelloCount/&gt;,document.getElementById("box"));</pre>
+            <p>上面的实例为button添加了事件，点击一次state.count就加1，然后显示在p标签中，逻辑结构不复杂，熟悉了语法之后就显得很简答了。</p>
+            <p>上面提到组件包含css，在开发过程当中添加样式也是十分常见的，react提供了三种方式，还是写个例子说明：</p>
+            <pre>&lt;style type="text/css"&gt;</pre>
+            <pre> .color-blue{</pre>
+            <pre>   color: blue;</pre>
+            <pre>   font-size: 20px;</pre>
+            <pre>  } </pre>
+            <pre>&lt;/style&gt;</pre>
+            <pre>var styleObj={</pre>
+            <pre>    color:"yellow",</pre>
+            <pre>    fontSize:"20px"</pre>
+            <pre>};</pre>
+            <pre>var HelloReact=React.createClass({</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>            &lt;div&gt;</pre>
+            <pre>            &lt;p className="color-blue">hello react 1&lt;/p&gt;</pre>
+            <pre>            &lt;p style={{color:"red",fontSize:"20px"}}>hello react 2&lt;/p&gt;</pre>
+            <pre>            &lt;p style={styleObj}>hello react 3&lt;/p&gt;</pre>
+            <pre>            &lt;/div&gt;</pre>
+            <pre>            );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+            <pre>ReactDOM.render(&lt;HelloReact/&gt;,document.getElementById("box"));</pre>
+            <p>分别给三个p标签使用样式，第一种使用ClaaaName,然后在css中按照平常方式写样式就行了，第二种事通过键值对的方式组合起来，最外层通过{}包裹起来，第三种就是赋值一个对象，对象中通过键值对设置样式，界面结果就很简单啦：</p>
+            <div class="img-box">
+              <img src="../../images/it/react/20170103/2.png" alt="">
+            </div>
+            <p>最后需要说明的就是react容许使用全局作用域中的所有变量，通过{}引用：</p>
+            <pre><div id="box"></div></pre>
+            <pre>&lt;script type="text/javascript"&gt;</pre>
+            <pre>    var name="react";</pre>
+            <pre>&lt;/script&gt;</pre>
+            <pre>&lt;script type="text/babel"&gt;</pre>
+            <pre>    var arr=[1,2,3]</pre>
+            <pre>    var HelloReact=React.createClass({</pre>
+            <pre>        render:function(){</pre>
+            <pre>            return(</pre>
+            <pre>                &lt;div&gt;</pre>
+            <pre>                &lt;p>{arr}<&lt;/p&gt;</pre>
+            <pre>                &lt;p>{name}<&lt;/p&gt;</pre>
+            <pre>                &lt;/div&gt;</pre>
+            <pre>                );</pre>
+            <pre>        }</pre>
+            <pre>    });</pre>
+            <pre>    ReactDOM.render(&lt;HelloReact/&gt;,document.getElementById("box"));</pre>
+            <pre>&lt;/script&gt;</pre>
+            <p>其他需要注意的是组件名称需要首字母大写，大驼峰写法，否则页面不能正确显示，如果组件里面包含多个子元素，最外层需要包裹起来形成一个整体。</p>
+          </div><!--end of content-->
+        </div>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="../../js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="../../js/common.js"></script>
+      <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>
