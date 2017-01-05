@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>react数据传递</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="../../css/common.css">
+   <link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="../../css/page.css">
+   <link rel="stylesheet" type="text/css" href="../../css/article.css">
+ </head>
+ <body>
+    <div class="loading-c" id="load-c">
+      <div class="loading" id="loading">
+          <span class="ball"></span>
+          <span class="shadow"></span>
+          <span class="text">加载中......</span>
+      </div>
+    </div>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="../../index.html">首页</a>
+         <a href="../../about.html">关于</a>
+         <a href="../../works.html">作品</a>
+         <a href="../../it.html" class="cur">技术</a>
+         <a href="../../contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="../../about.html">关于</a></li>
+            <li><a href="../../works.html">作品</a></li>
+            <li class="cur"><a href="../../it.html">技术</a>
+            <li><a href="../../contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+        <div class="it-acticle trans-bg">
+          <h3>React数据传递</h3>
+          <div class="info">
+            <span class="date">发布时间：2017-01-04</span>
+            <span class="tag">标签:react</span>
+          </div>
+          <div class="content">
+            <p>react应用是由多个组件组成的，组件之间相互协同配合完成我们期望达到的功能效果，而这其中就必然要涉及到组件之间数据传递交换的过程，而react由于是单向的数据流，在处理方式上有其独特的地方。<p>
+            <p>首先看一种情况，父组件(Parent)里面包含子组件(Child)和一个按钮，按钮点击一次Parent的count+1，然后Child组件将count显示出来，结构如下：</p>
+            <div class="img-box">
+              <img src="../../images/it/react/20170105/1.png" alt="">
+            </div>
+            <p>具体代码实现比较简单：</p>
+            <pre>var Parent=React.createClass({</pre>
+            <pre>    handleClick:function(){</pre>
+            <pre>        this.setState({"count":this.state.count+1});</pre>
+            <pre>    },</pre>
+            <pre>    getInitialState:function(){</pre>
+            <pre>        return{"count":1};</pre>
+            <pre>    },</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>            &lt;div&gt;</pre>
+            <pre>                &lt;input type="button" value="click me" onClick={this.handleClick}/&gt;</pre>
+            <pre>                &lt;Child propData={this.state.count}/&gt;</pre>
+            <pre>            &lt;/div&gt;</pre>
+            <pre>        );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+            <pre>var Child=React.createClass({</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>            &lt;div&gt;</pre>
+            <pre>                &lt;p&gt;{this.props.propData}&lt;/p&gt;</pre>
+            <pre>            &lt;/div&gt;</pre>
+            <pre>            );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+            <pre>ReactDOM.render(&lt;Parent/&gt;,document.getElementById("box"));</pre>
+            <p>上面的例子中，Parent通过设置Child的属性值propData将自己的state.count传递到Child里面，Child此时拥有了名称为prpData的属性，在内部就可以通过this.props.propData访问属性值了，这里要注意的是当按钮点击后，Child的值自动更新，因为state的改变默认会促使组件的重绘，Child就能获取到更新后的state.count，然后render出最新的结果了。</p>
+            <p>下面看另一种传递，函数的传递，为了子组件访问父组件的方法，提供一个回调函数传递至子组件，在子组件中改变的数据需要反应到父组件中，结构如下：</p>
+            <div class="img-box">
+              <img src="../../images/it/react/20170105/2.png" alt="">
+            </div>
+            <pre>var Parent=React.createClass({</pre>
+            <pre>    handleClick:function(){</pre>
+            <pre>        this.setState({"count":this.state.count+1});</pre>
+            <pre>    },</pre>
+            <pre>    getInitialState:function(){</pre>
+            <pre>        return{"count":1};</pre>
+            <pre>    },</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>            &lt;div></pre>
+            <pre>                &lt;p&gt;{this.state.count}&lt;/p&gt;</pre>
+            <pre>                &lt;Child propClick={this.handleClick}/&gt;</pre>
+            <pre>            &lt;/div&gt;</pre>
+            <pre>        );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+            <pre>var Child=React.createClass({</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>                &lt;input type="button" value="click me" onClick={this.props.propClick}/&gt;</pre>
+            <pre>            );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+            <pre>ReactDOM.render(&lt;Parent/&gt;,document.getElementById("box"));</pre>
+            <p>与第一个例子的效果相同，只是将Parent的函数作为属性传递给Child,然后点击Child里面的按钮就改变了Parent的状态值了。下面将流程再分解一下吧，函数和数值与上面的例子有差别，这个是我以前画的一个实例图，当然都一样：</p>
+            <div class="img-box">
+              <img src="../../images/it/react/20170105/3.png" alt="">
+            </div>
+            <p>上面讲到的例子都是十分简单的，如果业务逻辑复杂，组件嵌套过多，那么数据传递的链条势必会很长，反而增加了程序复杂度，因此在开发过程中还是要注意优化层级结构，合理传递数据。</p>
+          </div><!--end of content-->
+        </div>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="../../js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="../../js/common.js"></script>
+      <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>
