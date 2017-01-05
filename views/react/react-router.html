@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>react路由</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="../../css/common.css">
+   <link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="../../css/page.css">
+   <link rel="stylesheet" type="text/css" href="../../css/article.css">
+ </head>
+ <body>
+    <div class="loading-c" id="load-c">
+      <div class="loading" id="loading">
+          <span class="ball"></span>
+          <span class="shadow"></span>
+          <span class="text">加载中......</span>
+      </div>
+    </div>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="../../index.html">首页</a>
+         <a href="../../about.html">关于</a>
+         <a href="../../works.html">作品</a>
+         <a href="../../it.html" class="cur">技术</a>
+         <a href="../../contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="../../about.html">关于</a></li>
+            <li><a href="../../works.html">作品</a></li>
+            <li class="cur"><a href="../../it.html">技术</a>
+            <li><a href="../../contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+        <div class="it-acticle trans-bg">
+          <h3>React数据传递</h3>
+          <div class="info">
+            <span class="date">发布时间：2017-01-05</span>
+            <span class="tag">标签:react</span>
+          </div>
+          <div class="content">
+            <p>说起路由，让人容易联想到现实生活当中属于硬件范畴的路由器，但其实他们是两码事，如果没有接触过SPA开发的会有点陌生，说简单点，就是负责访问路径的跳转，跟j2ee的struts负责的职责差不多，只是react中的路由跳转是在一个页面内，不会跳转到新的页面进行刷新操作，这样能快速响应用户请求，提升用户体验。现在大热的vue,angular等开发框架都是用来开发单页面应用(SPA)的，当然react也是其中一员。</p>
+            <p>关于react-router的教材大多是用es6编写的，这里我也才用此方法，是用webpack作为打包工具，这之前需要安装nodejs，安装很简单，这里不细说，先创建一个webpack项目吧。</p>
+            <p>1.创建一个文件夹，然后使用命令行工具进入该文件夹，这里我的文件夹名称是router;</p>
+            <p>2.npm init命令，创建package.json;</p>
+            <p>3.使用npm install依赖包，包括react,react-dom,react-router,babel-laoder,babel-preset-es2015,babel-preset-react,webpack-dev-server,html-webpack-plugin,css-loader,style-loader这么多就好啦！</p>
+            <p>4.在router文件夹下面创建app和build文件夹，在app里面创建模版页面和index.js；</p>
+            <p>5.router文件夹下面新建webpack.config.js,具体配置如下:</p>
+            <div class="img-box">
+              <img src="../../images/it/react/20170105/4.png" alt="">
+            </div>
+            <p>项目最终文件夹结构如下图：</p>
+            <div class="img-box">
+              <img src="../../images/it/react/20170105/5.png" alt="">
+            </div>
+            <p>经过上面一系列步骤之后，终于可以写代码了，打开index.js:</p>
+            <pre>require("./css/index.css");</pre>
+            <pre>import React from "react";</pre>
+            <pre>import ReactDOM from "react-dom";</pre>
+            <pre>import {Router,Route,browserHistory} from "react-router";</pre>
+
+            <pre>var Home=React.createClass({</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>            <p>this is home page</p></pre>
+            <pre>        );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+
+            <pre>ReactDOM.render((</pre>
+            <pre>    &lt;Router history={browserHistory}>&gt;</pre>
+            <pre>        &lt;Route path="/index.html" component={Home}/>&gt;</pre>
+            <pre>    &lt;/Router>&gt;</pre>
+            <pre>),document.getElementById("main"));</pre>
+            <p>这里我引用了一个css，通过相应的css-loader和style-loader进行解析，自动加入到生成的页面当中，现在在浏览器里面输入http://127.0.0.1:8080/index.html就可以看到效果了：</p>
+            <div class="img-box">
+              <img src="../../images/it/react/20170105/6.png" alt="">
+            </div>
+            <p>上面的例子实现了一个简单的路由，只配置了一个路径index.html,使用组件Home最为响应返回，现实场景中一个路径配置怎么够，配置多个也很简单，添加Route，修改path和componet就行了，下面实现一个多路由的简单配置；</p>
+            <pre>const Home=React.createClass({</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>            &lt;div className="menu-bar"&gt;</pre>
+            <pre>                &lt;Menu/&gt;</pre>
+            <pre>                &lt;p className="content">this is home page!&lt;/p&gt;</pre>
+            <pre>            &lt;/div&gt;</pre>
+            <pre>        );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+
+            <pre>const Menu=React.createClass({</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>            &lt;ul className="menu-list"&gt;</pre>
+            <pre>                &lt;li className="menu"&gt;&lt;a href="./home"&gt;home&lt;/a&gt;&lt;/li&gt;</pre>
+            <pre>                &lt;li className="menu"&gt;&lt;a href="./about"&gt;about&lt;/a&gt;&lt;/li&gt;</pre>
+            <pre>                &lt;li className="menu"&gt;&lt;a href="./contact"&gt;contact&lt;/a&gt;&lt;/li&gt;</pre>
+            <pre>           &lt;/ul&gt;</pre>
+            <pre>        );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+            <pre>const About=React.createClass({</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>            &lt;div className="menu-bar"&gt;</pre>
+            <pre>                &lt;Menu/&gt;</pre>
+            <pre>                &lt;p className="content"&gt;this is about page!&lt;/p&gt;</pre>
+            <pre>            &lt;/div&gt;</pre>
+            <pre>        );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+
+            <pre>const Contact=React.createClass({</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>           &lt;div className="menu-bar"&gt;</pre>
+            <pre>                &lt;Menu/&gt;</pre>
+            <pre>                &lt;p className="content">this is contact page!&lt;/p&gt;</pre>
+            <pre>            &lt;/div&gt;</pre>
+            <pre>        );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+
+            <pre>ReactDOM.render((</pre>
+            <pre>    &lt;Router history={browserHistory}&gt;</pre>
+            <pre>        &lt;Route path="/" component={Home}/&gt;</pre>
+            <pre>        &lt;Route path="/home" component={Home}/&gt;</pre>
+            <pre>        &lt;Route path="/about" component={About}/&gt;</pre>
+            <pre>        &lt;Route path="/contact" component={Contact}/&gt;</pre>
+            <pre>    &lt;/Router&gt;</pre>
+            <pre>),document.getElementById("main"));</pre>
+            <p>上面的例子就配置了多个地址用于跳转，只是这些跳转都是在一个页面内完成的。</p>
+          </div><!--end of content-->
+        </div>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="../../js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="../../js/common.js"></script>
+      <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>
