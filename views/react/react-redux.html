@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>redux</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="../../css/common.css">
+   <link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="../../css/page.css">
+   <link rel="stylesheet" type="text/css" href="../../css/article.css">
+ </head>
+ <body>
+    <div class="loading-c" id="load-c">
+      <div class="loading" id="loading">
+          <span class="ball"></span>
+          <span class="shadow"></span>
+          <span class="text">加载中......</span>
+      </div>
+    </div>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="../../index.html">首页</a>
+         <a href="../../about.html">关于</a>
+         <a href="../../works.html">作品</a>
+         <a href="../../it.html" class="cur">技术</a>
+         <a href="../../contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="../../about.html">关于</a></li>
+            <li><a href="../../works.html">作品</a></li>
+            <li class="cur"><a href="../../it.html">技术</a>
+            <li><a href="../../contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+        <div class="it-acticle trans-bg">
+          <h3>redux</h3>
+          <div class="info">
+            <span class="date">发布时间：2017-01-10</span>
+            <span class="tag">标签:react</span>
+          </div>
+          <div class="content">
+            <p>redux,一句话概括，就是单向的数据流，为什么需要redux，就因为其简单和可预测的数据流程，对于react开说，子组件和父组件，子组件和子组件，他们之间的数据传递其实不是那么优雅的，要么通过回调函数传递，要么需要将数据上传至父组件，然后再向目标子组件传递，伴随着业务逻辑的逐渐复杂，数据传递也会变得更加复杂，因此需要一种简单有效的数据传递管理方式，而redux就是优秀的解决方案。</p>
+            <p>redux提供的API不多，其中包含Store,Action,Reducer几个核心概念，下图是redux的简单结构示意图：</p>
+            <div class="img-box">
+              <img src="../../images/it/react/20170110/1.png" alt="">
+            </div>
+            <p>这样看还是没有一个具体的认知，再画一个对比图，看看相比于传统的开发有什么区别吧：</p>
+            <div class="img-box">
+              <img src="../../images/it/react/20170110/2.png" alt="">
+            </div>
+            <p>上图左边是点击一下按钮，直接修改变量，这是传统模式下的开发(暂不考虑react)，右边是采用redux的模式，比左边多了几个步骤，显得复杂一点，如果只是要实现按钮点击，count+1的效果，就直接使用左边的方式吧，但是实际业务哪有那么简单的，因此将一个简单的修改分成几步，保持数据的单向流通是十分有必要的，下面有必要了解几个核心概念：</p>
+            <p>1.Store</p>
+            <p>Store是state的管理者，通过store.getState()可以获取应用的状态信息，Store提供了dispatch的方法，负责发送改变state的请求，在redux中，修改state必须通过store.dispatch方法分发任务，然后由reducer处理；</p>
+            <p>2.Action</p>
+            <p>上面说到Store负责派发任务，而Action就是具体的任务，Action没什么特别的，就是一个普通的对象，而对象里面包含一个type属性就好了，作为后面reducer判断处理的依据，Action也不需要通过特殊函数或者对象生成，需要修改state,返回一个对象丢给Store就行了；</p>
+            <p>3.Reducer</p>
+            <p>Reducer就是一个简单的函数而已，包含两个参数，state和action，state就是我们的状态机啦，action就是派发下来的具体修改任务，然后在函数体内判断action的type来选择具体处理的流程，函数最后需要返回新的state，这点比较重要，否则下次获取到的state就是undefined了。它还有一个功能，就是生成Store的时候作为入参，然后与store对象关联起来，例如：Redux.createStore(reducer)；</p>
+            <p>接下来动手写一个例子，两个按钮，一个将count+1,一个将count-1,代码如下：</p>
+            <pre>&lt;input type="button" value="add" onclick="handleAdd()"&gt;</pre>
+            <pre>&lt;input type="button" value="dec" onclick="handleDec()"&gt;</pre>
+            <pre>&lt;script type="text/javascript"&gt;</pre>
+            <pre>    const ADD="add";</pre>
+            <pre>    const DEC="dec";</pre>
+            <pre>    function handleAdd(){</pre>
+            <pre>        store.dispatch(add());</pre>
+            <pre>        console.log(store.getState());</pre>
+            <pre>    }</pre>
+            <pre>    function handleDec(){</pre>
+            <pre>        store.dispatch(dec());</pre>
+            <pre>        console.log(store.getState());</pre>
+            <pre>    }</pre>
+            <pre>    function add(){</pre>
+            <pre>        return{</pre>
+            <pre>            type:ADD</pre>
+            <pre>        };</pre>
+            <pre>    }</pre>
+            <pre>    function dec(){</pre>
+            <pre>        return{</pre>
+            <pre>            type:DEC</pre>
+            <pre>        };</pre>
+            <pre>    }</pre>
+            <pre>    function reducer(state={count:0},action){</pre>
+            <pre>        switch(action.type){</pre>
+            <pre>            case ADD:</pre>
+            <pre>                return{count:state.count+1};</pre>
+            <pre>                break;</pre>
+            <pre>            case DEC:</pre>
+            <pre>                return{count:state.count-1};</pre>
+            <pre>            break;</pre>
+            <pre>            default:</pre>
+            <pre>            return state;</pre>
+            <pre>            break;</pre>
+            <pre>        }</pre>
+            <pre>    }</pre>
+            <pre>    var store=Redux.createStore(reducer);</pre>
+            <pre>    console.log(store.getState());</pre>
+            <p>redux还有一些高级的用法，以后再慢慢完善，基础就说到这里啦。</p>
+            </script>
+          </div><!--end of content-->
+        </div>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="../../js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="../../js/common.js"></script>
+      <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>

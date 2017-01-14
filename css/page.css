@@ -77,6 +77,24 @@
    transform:translateX(10px);
    color:#923C85;
 }
+.paginition{
+    padding: 0.8em 0;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+.paginition a{
+    border: 1px solid #b9b5b5;
+    color: #000;
+    padding: 0.25em 0.6em;
+}
+.paginition a.active{
+    background-color: #03a9f4;
+    color: #fff;
+}
+.paginition a:hover{
+    background-color: #c4e8f9;
+    color: #a29c9c;
+}
 .content-i{
 	margin-left: 320px;
     position: relative;

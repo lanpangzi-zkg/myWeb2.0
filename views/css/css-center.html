@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>css居中探讨</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="../../css/common.css">
+   <link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="../../css/page.css">
+   <link rel="stylesheet" type="text/css" href="../../css/article.css">
+ </head>
+ <body>
+    <div class="loading-c" id="load-c">
+      <div class="loading" id="loading">
+          <span class="ball"></span>
+          <span class="shadow"></span>
+          <span class="text">加载中......</span>
+      </div>
+    </div>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="../../index.html">首页</a>
+         <a href="../../about.html">关于</a>
+         <a href="../../works.html">作品</a>
+         <a href="../../it.html" class="cur">技术</a>
+         <a href="../../contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="../../about.html">关于</a></li>
+            <li><a href="../../works.html">作品</a></li>
+            <li class="cur"><a href="../../it.html">技术</a>
+            <li><a href="../../contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+        <div class="it-acticle trans-bg">
+          <h3>css居中探讨</h3>
+          <div class="info">
+            <span class="date">发布时间：2017-1-14</span>
+            <span class="tag">标签:css 居中</span>
+          </div>
+          <div class="content">
+            <p>居中是前端开发当中一个经久不衰的话题，在实际开发过程当中也会遇到各种各样的居中显示问题，当然没有一种完美的解决方法，需要结合实际需求去取舍，最近找工作遇到了一些居中的问题，发觉自己掌握得并不是十分牢固，因此今天系统整理一下css居中的问题。<p>
+            <p>
+            <p>居中可以大致分为水平，垂直居中，对于具体的元素，inline/inline-block，block又会有不同的策略，考虑到浏览器兼容性的问题，同一种居中的需求还有不同的解决方案，下面就一一说明一下各种居中的策略和适用场景。</p>
+            <p class="chapter-title">1.inline/inline-block居中</p>
+            <ul>
+              <li>
+                <p>&.水平居中</p>
+                <p>对于这种情况，往往是比较简单的，水平居中在父元素运用text-align:center即可，或者使用flex布局，还可以使用table布局，当然使用最多的还是text-align:center，flex是css3的属性，因此兼容性不是很好，table一般也不适用此场景；</p>
+              </li>
+              <li>
+                <p>&.垂直居中</p>
+                <p>垂直居中要分两种情况，如果父元素高度不固定，那么设置padding将上下两个方向的内边距撑开就好，如果是父元素高度固定，那么除了使用flex新的属性外，还可以通过设置line-height等于父元素高度实现，还有一种方式就是使用display:table属性，具体看一下演示代码：</p>
+
+                <pre>.container{</pre>
+                <pre>  height: 100px;</pre>
+                <pre>  background-color: #4CAF50;</pre>
+                <pre>  color: #fff;</pre>
+                <pre>  margin: 1em 0;</pre>
+                <pre>}</pre>
+                <pre>.demo1 span{</pre>
+                <pre>  line-height: 100px;</pre>
+                <pre>}</pre>
+                <pre>.demo2{</pre>
+                <pre>  display: table;</pre>
+                <pre>  width: 100%;</pre>
+                <pre>}</pre>
+                <pre>.demo2 span{</pre>
+                <pre>  display: table-cell;</pre>
+                <pre>  vertical-align: middle;</pre>
+                <pre>}</pre>
+                <pre>&lt;div class="demo1 container"&gt;</pre>
+                <pre>    &lt;span&gt;use line-height&lt;/span&gt;</pre>
+                <pre&lt;/div&gt;</pre>
+                <pre>&lt;div class="demo2 container"&gt;</pre>
+                <pre>    &lt;span>use table&table-cell&lt;/span&gt;</pre>
+                <pre>&lt;/div&gt;</pre>
+                <div class="img-box">
+                  <img src="../../images/it/css/20170114/1.png" alt="">
+                </div>
+                <p>line-height兼容性是最好的，能支持到ie6,而display:table需要ie8及其以上版本</p>
+              </li>
+              <li>
+                <p>&.水平和垂直居中</p>
+                <p>水平和垂直居中最简单的实现就是在container添加text-align就可以了，这里就懒得贴代码了，略过。</p>
+              </li>
+            </ul>
+            <p class="chapter-title">2.block居中</p>              
+            <ul>
+              <li>
+                <p>&.水平居中</p>
+                <p>对于水平居中，一般使用最多的就是margin:auto了，方式很简单，这里也略过。</p>
+              </li>
+              <li>
+                <p>&.水平和垂直居中</p>
+                <p>这里需要分为该block元素高度固定和不固定两种情况，对于高度固定的情况来说,有如下几种方式：</p>
+                <pre>&lt;div class="container demo3"&gt;&lt;/div&gt;</pre>
+                <pre>*********第一种*********</pre>
+                <pre>.demo3 {</pre>
+                <pre>    width: 100px;</pre>
+                <pre>    height: 100px;</pre>
+                <pre>    margin: 0 auto;</pre>
+                <pre>    position: absolute;</pre>
+                <pre>    left: 50%;</pre>
+                <pre>    top: 50%;</pre>
+                <pre>    margin-left: -50px;</pre>
+                <pre>    margin-top: -50px;</pre>
+                <pre>}</pre>
+                <pre>*********第二种*********</pre>
+                <pre>.demo3 {</pre>
+                <pre>    width: 100px;</pre>
+                <pre>    height: 100px;</pre>
+                <pre>    margin: 0 auto;</pre>
+                <pre>    position: absolute;</pre>
+                <pre>    left: 50%;</pre>
+                <pre>    top: 50%;</pre>
+                <pre>    transform: translate(-50px,-50px);</pre>
+                <pre>}</pre>
+                <p>第一中方式兼容性最好，能支持ie6及其以上版本，第二种方式就需要支持css3的新浏览器了，这里还可以使用flex布局，当然也是需要浏览器的支持了。</p>
+                <p>如果调整页面布局，我们可以使用表格布局，代码如下：</p>
+                <pre>&lt;table&gt;</pre>
+                <pre>  &lt;tr&gt;</pre>
+                <pre>    &lt;td align="center"&gt;</pre>
+                <pre>      &lt;div class="demo4 container"&gt;&lt;/div&gt;</pre>
+                <pre>    &lt;/td&gt;</pre>
+                <pre>  &lt;/tr&gt;</pre>
+                <pre>&lt;/table&gt;</pre>
+                <p>使用表格布局，兼容性相当好，所有浏览器都能完美支持，在前端最初开发的时候也是大量使用了table布局。这种布局不仅适用于高度固定的元素，而且对于不固定的元素也能实现完美居中。</p>
+                <p>类似使用表格布局，这里也可以设置display:table，子元素dislay:table-cell来实现，只是ie8一下版本不支持。</p>
+                <p>对于高度不固定的情况下，除了使用前面提到的table布局，还可以使用line-block来实现：</p>
+              </li>
+            </ul>  
+          </div><!--end of content-->
+        </div>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="../../js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="../../js/common.js"></script>
+      <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>

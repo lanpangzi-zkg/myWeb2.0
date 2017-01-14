@@ -54,7 +54,7 @@
       </div>
       <div class="content-i">
         <div class="it-acticle trans-bg">
-          <h3>React数据传递</h3>
+          <h3>React路由</h3>
           <div class="info">
             <span class="date">发布时间：2017-01-05</span>
             <span class="tag">标签:react</span>
@@ -83,7 +83,7 @@
             <pre>var Home=React.createClass({</pre>
             <pre>    render:function(){</pre>
             <pre>        return(</pre>
-            <pre>            <p>this is home page</p></pre>
+            <pre>            &lt;p&gt;this is home page&lt;/p&gt;</pre>
             <pre>        );</pre>
             <pre>    }</pre>
             <pre>});</pre>
@@ -97,7 +97,7 @@
             <div class="img-box">
               <img src="../../images/it/react/20170105/6.png" alt="">
             </div>
-            <p>上面的例子实现了一个简单的路由，只配置了一个路径index.html,使用组件Home最为响应返回，现实场景中一个路径配置怎么够，配置多个也很简单，添加Route，修改path和componet就行了，下面实现一个多路由的简单配置；</p>
+            <p>上面的例子实现了一个简单的路由，只配置了一个路径index.html,使用组件Home作为响应返回，现实场景中一个路径配置怎么够，配置多个也很简单，添加Route，修改path和componet就行了，下面实现一个多路由的简单配置；</p>
             <pre>const Home=React.createClass({</pre>
             <pre>    render:function(){</pre>
             <pre>        return(</pre>
@@ -150,7 +150,110 @@
             <pre>        &lt;Route path="/contact" component={Contact}/&gt;</pre>
             <pre>    &lt;/Router&gt;</pre>
             <pre>),document.getElementById("main"));</pre>
-            <p>上面的例子就配置了多个地址用于跳转，只是这些跳转都是在一个页面内完成的。</p>
+            <p>上面的例子就配置了多个地址用于跳转，只是这些跳转都是在一个页面内完成的。这里需要说明的是Router和Route都是react的组件，只是他们没有最终生成DOM渲染到界面显示出来，他们只是负责我们的应用应该如何工作。</p>
+            <p>如果运行上诉例子会发现，整个页面都会闪动，感觉像页面的整体刷新，这个当然不是我们想要的效果，下面正式学习一下路由吧。</p>
+
+            <p>前面也说到react是开发单页面的库，而单页面往往是局部的视图切换与数据刷新，因此一个访问路径对应一个局部的组件，而整个页面的基本框架不变，从而组成了可重用的页面结构，下面再看一个例子：</p>
+            <pre>require("./css/index.css");</pre>
+            <pre>import React from "react";</pre>
+            <pre>import ReactDOM from "react-dom";</pre>
+            <pre>import {Router,Route,IndexRoute,Link,browserHistory} from "react-router";</pre>
+
+            <pre>const MainLayout=React.createClass({</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>            &lt;div className="wrapper"&gt;</pre>
+            <pre>                &lt;div className="header"&gt;header&lt;/div&gt;</pre>
+            <pre>                &lt;div className="aside-menu"&gt;</pre>
+            <pre>                    &lt;Menu/&gt;</pre>
+            <pre>                &lt;/div&gt;</pre>
+            <pre>                &lt;div className="content"&gt;</pre>
+            <pre>                    {this.props.children}</pre>
+            <pre>                &lt;/div&gt;</pre>
+            <pre>            &lt;/div&gt;</pre>
+            <pre>        );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+            <pre>const MainContent=React.createClass({</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>            &lt;div className="main-content"&gt;</pre>
+            <pre>                {this.props.children}</pre>
+            <pre>            &lt;/div&gt;</pre>
+            <pre>        );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+            <pre>const Menu=React.createClass({</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>            &lt;div className="menu-list"&gt;</pre>
+            <pre>                &lt;li className="menu"&gt;</pre>
+            <pre>                  &lt;Link to="index" activeClassName="menu-active"&gt;首页&lt;/Link&gt;&lt;/li&gt;</pre>
+            <pre>                &lt;li className="menu"&gt;</pre>
+            <pre>                  &lt;Link to="react" activeClassName="menu-active"&gt;react&lt;/Link&gt;&lt;/li&gt;</pre>
+            <pre>                &lt;li className="menu"&gt;</pre>
+            <pre>                  &lt;Link to="java" activeClassName="menu-active"&gt;java&lt;/Link&gt;&lt;/li&gt;</pre>
+            <pre>            &lt;/div&gt;</pre>
+            <pre>        );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+
+            <pre>const IndexPage=React.createClass({</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>            &lt;div className="page"&gt;</pre>
+            <pre>                &lt;p&gt;首页!&lt;/p&gt;</pre>
+            <pre>            &lt;/div&gt;</pre>
+            <pre>        );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+
+            <pre>const ReactPage=React.createClass({</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>           &lt;div className="page"&gt;</pre>
+            <pre>                &lt;p&gt;react!&lt;/p&gt;</pre>
+            <pre>            &lt;/div&gt;</pre>
+            <pre>        );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+
+            <pre>const JavaPage=React.createClass({</pre>
+            <pre>    render:function(){</pre>
+            <pre>        return(</pre>
+            <pre>           &lt;div className="page"&gt;</pre>
+            <pre>                &lt;p&gt;java!&lt;/p&gt;</pre>
+            <pre>            &lt;/div&gt;</pre>
+            <pre>        );</pre>
+            <pre>    }</pre>
+            <pre>});</pre>
+
+            <pre>ReactDOM.render((</pre>
+            <pre>    &lt;Router history={browserHistory}&gt;</pre>
+            <pre>        &lt;Route path="/" component={MainLayout}&gt;</pre>
+            <pre>            &lt;Route component={MainContent}&gt;</pre>
+            <pre>                &lt;IndexRoute component={IndexPage}/&gt;</pre>
+            <pre>                &lt;Route path="index" component={IndexPage}/&gt;</pre>
+            <pre>                &lt;Route path="react" component={ReactPage}/&gt;</pre>
+            <pre>                &lt;Route path="java" component={JavaPage}/&gt;</pre>
+            <pre>            &lt;/Route&gt;</pre>
+            <pre>        &lt;/Route&gt;</pre>
+            <pre>    &lt;/Router&gt;</pre>
+            <pre>),document.getElementById("main"));</pre>
+            <p>上面的例子主要包含了5个组件，通过菜单控制可以实现MainContent内容的切换，其嵌套结构图如下：</p>
+            <div class="img-box">
+              <img src="../../images/it/react/20170105/7.png" alt="">
+            </div>
+            <p>由于存在嵌套关系，因此就存在一个问题，怎么决定子组件的摆放位置，当然按照以往的开发模式，直接写那里不就完了嘛，但是单页面应用就不同了，存在组件的切换，还要考虑到复用性，上面的例子用到了this.props.children这个属性，这个呢就是确定子组件的摆放位置啦，路由通过这个去渲染对应的显示内容啦，与this.props.children属性对应起来，路由配置也需要嵌套配置了，父组件路由里面包含子组件路由，具体配置呢也不难，设置好path和component就行了。</p>
+            <p>简单讲了一下嵌套路由配置之后，还需要了解路由的几个属性：</p>
+            <p>1.IndexRoute</p>
+            <p>IndexRoute从字面上也可以大致了解它的作用，他就说作为默认的路由，&lt;IndexRoute component={IndexPage}/&gt;表示当访问路径没有指明子组件配置的path时，就显示InexPaeg组件；</p>
+            <p>2.Link</p>
+            <p>在以往前端开发过程中，a标签常常用来链接跳转，但是在react-router中，不推荐直接使用a标签，而是Link组件，这个用来实现页面内的跳转，但其最终都会编译成a标签，如果你需要连接到外部界面，那就直接用a标签,与Link组件相关联的一个属性是activeClassName，这个是Link被选中时的样式，还是蛮实用的；</p>
+            <p>3.Browser History</p>
+            <p>作为Router组件的属性，用于制定浏览器历史记录的方式，通常是browserHistory，但是对于旧版的react，默认值是hashHistory，hashHistory使用页内的锚点作为历史记录，针对老浏览器，而browserHistory针对新浏览器，因为他们支持html5的历史记录api；</p>
+            <p>4.路由匹配</p>
+            <p>网页访问地址是多种多样的，而对于某些类似的访问路径，react-router提供了匹配的模式，形如：&lt;Route path="demo/:id" component={demoComponent}&gt;,该路径匹配demo/123，demo/abc等形式的路径，而且会将demo/后面的路径解析成属性名称为id的属性传递到对应组件当中去；</p>
           </div><!--end of content-->
         </div>
       </div>
