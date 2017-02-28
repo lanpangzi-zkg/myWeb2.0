@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>css背景一</title>
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" type="text/css" href="../../css/common.css">
+   <link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+   <link rel="stylesheet" type="text/css" href="../../css/page.css">
+   <link rel="stylesheet" type="text/css" href="../../css/article.css">
+ </head>
+ <body>
+    <div class="loading-c" id="load-c">
+      <div class="loading" id="loading">
+          <span class="ball"></span>
+          <span class="shadow"></span>
+          <span class="text">加载中......</span>
+      </div>
+    </div>
+    <div class="wrapper wrapper-bg"></div>
+    <div class="main" id="main">
+      <div class="drawer" id="drawer">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <div class="mobile-aside">
+        <div class="mobile-i">
+          <div class="mobile-icon-box">
+             <span class="icon"></span>
+          </div>
+            <span class="name">一个程序猿</span>
+         </div>
+         <a href="../../index.html">首页</a>
+         <a href="../../about.html">关于</a>
+         <a href="../../works.html">作品</a>
+         <a href="../../it.html" class="cur">技术</a>
+         <a href="../../contract.html">联系</a>
+      </div>
+      <div class="aside">
+         <div class="aside-top trans-bg">
+            <span class="icon"></span>
+            <span class="name">一个程序猿</span>
+         </div>
+         <div class="aside-menu-panel trans-bg">
+           <ul class="aside-menu">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="../../about.html">关于</a></li>
+            <li><a href="../../works.html">作品</a></li>
+            <li class="cur"><a href="../../it.html">技术</a>
+            <li><a href="../../contract.html">联系</a></li>
+           </ul>
+         </div>
+      </div>
+      <div class="content-i">
+        <div class="it-acticle trans-bg">
+          <h3>css背景属性探讨一</h3>
+          <div class="info">
+            <span class="date">发布时间：2017-02-28</span>
+            <span class="tag">标签:css background-clip&background-origin</span>
+          </div>
+          <div class="content">
+            <p>在工作场景当中，时常用到background属性，使用最多当属background-color,background-image这些了，但最近看到了《css secrets》这本书后，对背景有了新的认识和了解，今天就总结一下background-clip,background-origin和background-position这三个属性。在解释这几个属性前，需要了解一下盒模型(下面这个图片从网上盗的，自己懒得画了~):</p>
+            <div class="img-box">
+              <img src="../../images/it/css/20170228/1.png">
+            </div>
+            <p class="chapter-title">1.background-clip</p>
+            <p>这个属性从字面上讲就是裁剪，当然它也就是干这个的，它有三个取值：</p>
+            <p style="font-weight: bold;">border-box | padding-box | content-box</p>
+            <ul class="exp-list">
+              <li>
+                1、border-box:此值为默认值，背景从border区域向外裁剪，也就是超出部分将被裁剪掉；
+              </li>
+              <li>
+                2、padding-box：背景从padding区域向外裁剪，超过padding区域的背景将被裁剪掉；
+              </li>
+              <li>
+                3、content-box：背景从content区域向外裁剪，超过context区域的背景将被裁剪掉；
+              </li>
+            </ul>
+            <p>简单了解了一下属性之后，接下来就看一下实例：</p>
+            <pre>----html----</pre>
+            <pre>&lt;div class="box&gt;</pre>
+            <pre>哈哈哈哈......</pre>
+            <pre>&lt;/div&gt;</pre>
+            <pre>----css----</pre>
+            <pre>.box{</pre>
+            <pre>      width: 10em;</pre>
+            <pre>      height: 10em;</pre>
+            <pre>      background-color: #fbde7c;</pre>
+            <pre>      margin: 1em auto;</pre>
+            <pre>      border:1em dotted #eee;</pre>
+            <pre>      padding:1em;</pre>
+            <pre>      color: #fff;</pre>
+            <pre>      background-repeat: no-repeat;</pre>
+            <pre> }</pre>
+            <p class="note">默认情况下背景颜色会延伸到边框下面，这里面框特意处理成dotted类型，通过效果图可以明显看到背景在边框下面，而通过设置backgound-clip就可以裁剪背景;</p>
+            <div class="img-box">
+              <img src="../../images/it/css/20170228/2.png">
+            </div>
+            <p>上面的实例当中，background-clip默认是border-box，现在我们来设置它，感受一下不同的效果：</p>
+            <div class="img-box">
+              <img src="../../images/it/css/20170228/3.png">
+              <p>background-clip:padding-content</p>
+            </div>
+            <div class="img-box">
+              <img src="../../images/it/css/20170228/4.png">
+              <p>background-clip:content-box</p>
+            </div>
+            <p>通过对比就可以知道background-clip的用处了，这里还需要强调一点，该属性是css3新增的，对background-color和background-image均有效。</p>
+            <p class="chapter-title">2.background-origin</p>
+            <p>background-origin表示背景图片开始绘制的位置，也就是起点，和background-clip取值一样，但默认值是padding-box,接下来的实例我们在前面的例子当中稍作修改，添加一张背景图片，同时去掉background-color和background-clip;</p>
+            <div class="img-box">
+              <img src="../../images/it/css/20170228/5.png">
+              <p>background-origin:padding-box(默认情况下)</p>
+            </div>
+            <div class="img-box">
+              <img src="../../images/it/css/20170228/6.png">
+              <p>background-origin:border-box</p>
+            </div>
+            <div class="img-box">
+              <img src="../../images/it/css/20170228/7.png">
+              <p>background-origin:content-box</p>
+            </div>
+            <p>通过对比可以发现，不管哪一种背景的起点，终点都是border-box的右下角；</p>
+            <p class="chapter-title">3.background-position</p>
+            <p>background-position表示背景图片相对于background-origin的偏移位置，这里需要注意的是，使用该属性之前需要设置背景图片，否则无效，它的取值方式多样，可以使left|top|right|bottom，px或者%，接下来还是以上面的实例为基础：</p>
+            <div class="img-box">
+              <img src="../../images/it/css/20170228/8.png">
+            </div>
+            <p>上面两幅图中，左边为默认情况，右边设置了background-position:10px 10px,可以明显看到图片相对于起点有明显的偏移；</p>
+            <div class="img-box">
+              <img src="../../images/it/css/20170228/9.png">
+            </div>
+            <p>上面两幅图是设置了background-origin:border-box的对比效果；</p>
+            <p style="margin-top: 1.5em;">介绍完这几个属性后，综合起来看一下对比效果,首先将背景裁剪区域限制在content-box内，然后调整background-origin:</p>
+            <div class="img-box">
+              <img src="../../images/it/css/20170228/10.png">
+            </div>
+            <p>由于限制了background-clip:content-box,因此背景图片的显示窗口大小和位置是不会改变的，background-origin只是改变背景图片绘制的起点而已，表现在视觉上面就是图片内容有偏移；</p>
+
+            <p>接下来限制background-origin:padding-box,然后调整background-clip:</p>
+            <div class="img-box">
+              <img src="../../images/it/css/20170228/11.png">
+            </div>
+            <p>上面的情况中，背景图片的绘制起点不会改变，唯一改变的就是显示区域。</p>
+          </div><!--end of content-->
+        </div>
+      </div>
+    </div>
+    <div class="scripts" style="position: absolute; display: none; visibility: hidden">
+      <script type="text/javascript" src="../../js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="../../js/common.js"></script>
+      <script type="text/javascript" src="../../js/prefixfree.min.js"></script>
+    </div>
+ </body>
+
+</html>

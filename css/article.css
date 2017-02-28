@@ -19,10 +19,21 @@
 }
 .chapter-title{
   font-weight: bold;
+  font-size: 1.2em;
 }
 .chapter-item,.chapter-title,.note{
   margin: 1em 0;
   text-indent: 0;
+}
+.img-box p{
+  color: #afafaf;
+  padding-bottom: 1em;
+}
+.note{
+  color: #9c9d9e;
+  font-size: 0.9em;
+  text-indent: 2em;
+  font-style: italic;
 }
 pre{
   position: relative;

@@ -137,7 +137,18 @@
                 <pre>    top: 50%;</pre>
                 <pre>    transform: translate(-50px,-50px);</pre>
                 <pre>}</pre>
-                <p>第一中方式兼容性最好，能支持ie6及其以上版本，第二种方式就需要支持css3的新浏览器了，这里还可以使用flex布局，当然也是需要浏览器的支持了。</p>
+                <pre>*********第三种*********</pre>
+                <pre>.demo3 {</pre>
+                <pre>    width: 100px;</pre>
+                <pre>    height: 100px;</pre>
+                <pre>    position: absolute;</pre>
+                <pre>    left: 0;</pre>
+                <pre>    top: 0;</pre>
+                <pre>    right:0;</pre>
+                <pre>    bottom:0;</pre>
+                <pre>    margin: auto;</pre>
+                <pre>}</pre>
+                <p>第一中方式兼容性最好，能支持ie6及其以上版本，第二种方式就需要支持css3的新浏览器了，第三种方法需要ie9及其以上版本支持，这里还可以使用flex布局，当然也是需要浏览器的支持了。</p>
                 <p>如果调整页面布局，我们可以使用表格布局，代码如下：</p>
                 <pre>&lt;table&gt;</pre>
                 <pre>  &lt;tr&gt;</pre>
@@ -147,10 +158,88 @@
                 <pre>  &lt;/tr&gt;</pre>
                 <pre>&lt;/table&gt;</pre>
                 <p>使用表格布局，兼容性相当好，所有浏览器都能完美支持，在前端最初开发的时候也是大量使用了table布局。这种布局不仅适用于高度固定的元素，而且对于不固定的元素也能实现完美居中。</p>
-                <p>类似使用表格布局，这里也可以设置display:table，子元素dislay:table-cell来实现，只是ie8一下版本不支持。</p>
+                <p>类似使用表格布局，这里也可以设置display:table，子元素dislay:table-cell来实现，只是ie8以下版本不支持。</p>
                 <p>对于高度不固定的情况下，除了使用前面提到的table布局，还可以使用line-block来实现：</p>
+                <pre>.Center-Container.is-Inline { </pre>
+                <pre>  text-align: center;</pre>
+                <pre>  overflow: auto;</pre>
+                <pre>  height: 100%;</pre>
+                <pre>}</pre>
+                 
+                <pre>.Center-Container.is-Inline:after,</pre>
+                <pre>.is-Inline .Center-Block {</pre>
+                <pre>  display: inline-block;</pre>
+                <pre>  vertical-align: middle;</pre>
+                <pre>}</pre>
+                 
+                <pre>.Center-Container.is-Inline:after {</pre>
+                <pre>  content: '';</pre>
+                <pre>  height: 100%;</pre>
+                <pre>  margin-left: -0.25em; </pre>
+                <pre>}</pre>
+                 
+                <pre>.is-Inline .Center-Block {</pre>
+                <pre>  max-width: 99%; </pre>
+                <pre>}</pre>
+                <pre>&lt;div class="Center-Container is-Inline"&gt;</pre>
+                <pre>  &lt;div class="Center-Block"&gt;</pre>
+                <pre>    hahaha&lt;/br&gt;</pre>
+                <pre>    hehehe</pre>
+                <pre>  &lt;/div&gt;</pre>
+                <pre>&lt;/div&gt;</pre>
+                <p>利用上诉方法实现原理也比较简单，使用伪类将高度设置成父元素高度，这样就撑开了内容区域的可视高度，然后将内容显示区域通过line-height居中，居中的参照物就是伪类，两个inline-block元素通过vertical-align居中就实现了我们想要的效果，这里才用margin-left使内容区域水平居中，具体的值要根据字体大小来调整。</p>
               </li>
-            </ul>  
+            </ul> 
+            <p class="chapter-title">3.其他居中</p>              
+            <ul>
+              <li>
+                <p>&.父元素高度固定，多行文本居中</p>
+                <p>对于单行文本，垂直居中很简单，直接当line-height等于父元素高度即可，但是对于多行，就需要再做一些额外的工作了，具体实现如下：</p>
+                <pre>p{</pre>
+                <pre>    line-height:150px;</pre>
+                <pre>    border:1px dashed #cccccc;</pre>
+                <pre>    text-align:center;</pre>
+                <pre>}</pre>
+                <pre>p>span{</pre>
+                <pre>    display:inline-block;</pre>
+                <pre>    line-height:1.4em;</pre>
+                <pre>    vertical-align:middle;</pre>
+                <pre>    font-size:18px;</pre>
+                <pre>}</pre>
+                <pre>&lt;p&gt;</pre>
+                <pre>  &lt;span&gt;</pre>
+                <pre>      这是文字的垂直居中，这是文字的垂直居中，文字大小设置为18px</pre>
+                <pre>      &lt;br /&gt;</pre>
+                <pre>      这里是第二行，用来测试多行的显示效果。</pre>
+                <pre>  &lt;/span&gt;</pre>
+                <pre>&lt;/p&gt;</pre>
+                <p>实现原理也比较简单，将多行文本作为一个整体，先当成一行，使用父元素的line-height和自己的vertical-align实现单行居中，为了避免父元素的line-height对多行文本行高的影响，还要给每行文本重新设置line-height，这样就实现了多行居中。</p>
+              </li>
+              <li>
+                <p>&.图片文字垂直居中</p>
+                <p>这种情况在实际工作当中还是经常遇到的，还是需要利用到line-height和vertical-align:</p>
+                <pre>p{</pre>
+                <pre>    line-height:250px;</pre>
+                <pre>    height: 250px;</pre>
+                <pre>    border:1px dashed #cccccc;</pre>
+                <pre>    text-align: center;</pre>
+                <pre>    padding: 1em;</pre>
+                <pre>    font-size: 0;</pre>
+                <pre>}</pre>
+                <pre>p .v-m{</pre>
+                <pre>  vertical-align: middle;</pre>
+                <pre>  font-size: 16px;</pre>
+                <pre>}</pre>
+                <pre>&lt;p&gt;</pre>
+                <pre>  &lt;img class="v-m" src="http://img6.bdstatic.com/img/image/smallpic/chongwu112.jpeg" width=200&gt;</pre>
+                <pre>  &lt;input type="button" value="button" class="v-m"&gt;</pre>
+                <pre>  &lt;span class="v-m"&gt;this is baidu logo&lt;/span&gt;</pre>
+                <pre>&lt;/p&gt;</pre>
+                <div class="img-box">
+                  <img src="../../images/it/css/20170114/2.png" alt="">
+                </div>
+              </li>
+            </ul>   
           </div><!--end of content-->
         </div>
       </div>
